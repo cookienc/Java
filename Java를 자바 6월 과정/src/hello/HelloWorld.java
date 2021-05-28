@@ -4,21 +4,19 @@ public class HelloWorld {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String a = "Java를 자바 4일차" ;
-		int num1 = 4 ;
-		long num2 = 2200000000l;
-		float num3 = 3.1415926535897932384626433832795028841971f ;
-		double num4 = 3.1415926535897932384626433832795028841971 ;
-		boolean b = false;
-		boolean c = true;
-		
-		System.out.println(a);
-		System.out.println(num1);
-		System.out.println(num2);
-		System.out.println(num3);
-		System.out.println(num4);
-		System.out.println(b);
-		System.out.println(c);
+	System.out.print("개행문자 없이 그냥 출력되는 print");
+	System.out.print("줄을 바꾸려면 개행문자 입력!!\n\n");
+	
+	System.out.println("개행문자가 포함되어 었는 println");
+	System.out.println("바로 띄어쓰기 가능!!\n");
+	
+	String a = "c언어와 같은 자바의 printf" ;
+	String b = "배우기가 좀 더 수월하겠어요.";
+	String c = "Java를 자바 6월 과정 5일차";
+	
+	System.out.printf("%s\n", a);
+	System.out.printf("%s\n\n", b);
+	System.out.printf("%s\n", c);
 	}
 
 }
