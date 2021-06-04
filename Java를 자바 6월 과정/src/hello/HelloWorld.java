@@ -10,10 +10,12 @@ public class HelloWorld {
 		System.out.print("숫자를 입력하세요 : ");
 		int num = sc.nextInt();
 		int sum = 0 ;
+		int i = 0 ;
 		
-		for( int i = 0 ; i < num + 1 ; i++) {
+		while( i < num + 1 ) {
 			
-			sum += i ; 
+			sum += i;
+			i++;
 			
 		}
 		
