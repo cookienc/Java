@@ -1,26 +1,20 @@
 package hello;
 
-class Calculator {
-	int x, y;
+class Student {
+	float x, y, z;
+	String a;
 	
-	public int sum() {
-		return x + y ;	
+	Student(String a, float x, float y, float z ){
+		this.a = a;
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
-	public int sub() {
-		return x - y;
+	
+	public void getAverage() {
+		System.out.printf("%sÀÇ Æò±Õ Á¡¼ö: %f\n", a, (x + y + z)/3);
 	}
-	public int div() {
-		return x / y;
-	}
-	public int mul() {
-		return x * y;
-	}
-	public void printResult() {
-		System.out.printf("%d + %d = %d\n", x, y, sum());
-		System.out.printf("%d - %d = %d\n", x, y, sub());
-		System.out.printf("%d / %d = %d\n", x, y, div());
-		System.out.printf("%d * %d = %d\n", x, y, mul());
-	}
+	
 }
 
 public class HelloWorld {
@@ -28,14 +22,13 @@ public class HelloWorld {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		Calculator calculator = new Calculator();
+		Student student1 = new Student("ÄÚ¹Â", 100, 80, 75);
+		Student student2 = new Student("±èº¯¼ö", 96, 58, 90);
 		
-		calculator.x = 30;
-		calculator.y = 50;
-
-		calculator.printResult();
+		student1.getAverage();
+		student2.getAverage();
 		
-
+		
 	}
 
 }
