@@ -1,34 +1,36 @@
 package hello;
 
-class Student {
-	float x, y, z;
-	String a;
-	
-	Student(String a, float x, float y, float z ){
-		this.a = a;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-	
-	public void getAverage() {
-		System.out.printf("%s의 평균 점수: %f\n", a, (x + y + z)/3);
-	}
-	
-}
+import java.util.Scanner;
+
 
 public class HelloWorld {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	
-		Student student1 = new Student("코뮤", 100, 80, 75);
-		Student student2 = new Student("김변수", 96, 58, 90);
 		
-		student1.getAverage();
-		student2.getAverage();
+		Scanner sc = new Scanner(System.in);
 		
-		
-	}
+		int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+		while (true) {
+			
+				
+			System.out.print("숫자를 입력하세요: ");
+			int i = sc.nextInt();
+			try {
+				
+				System.out.println(value[i]-1);
+				System.out.println("프로그램 종료");
+				break;
+			
+			}catch(ArrayIndexOutOfBoundsException e) {
+				
+				System.out.println("0~9사이의 수를 입력하세요");
+				
+			}
+			
+			
+		}
+		sc.close();
+	}
+		
 }
