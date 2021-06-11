@@ -2,35 +2,44 @@ package hello;
 
 import java.util.Scanner;
 
+class NumberThread extends Thread {
+	
+	public void run() {
+		
+		for(int i = 0; i < 50 ; i++) {
+			
+			System.out.print(i);
+			
+		}
+	}
+	
+}
+
+class CharThread extends Thread {
+	
+	public void run() {
+		
+		for(char i = 'a'; i <= 'z'; i++) {
+			
+			System.out.print(i);
+			
+		}
+	}
+}
 
 public class HelloWorld {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in);
-		
-		int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-		while (true) {
+		Thread thread1 = new NumberThread();
 			
-				
-			System.out.print("숫자를 입력하세요: ");
-			int i = sc.nextInt();
-			try {
-				
-				System.out.println(value[i]-1);
-				System.out.println("프로그램 종료");
-				break;
+		Thread thread2 = new CharThread();
 			
-			}catch(ArrayIndexOutOfBoundsException e) {
-				
-				System.out.println("0~9사이의 수를 입력하세요");
-				
-			}
+		thread1.start(); 
+		thread2.start(); 
 			
-			
-		}
-		sc.close();
 	}
 		
 }
+		
+
