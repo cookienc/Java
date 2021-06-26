@@ -1,6 +1,6 @@
 class data { int x; }
 
-public class ReferenceParamEx {
+class ReferenceParamEx {
 	public static void main(String[] args) {
 		Data d = new Data();
 		d.x = 10;
