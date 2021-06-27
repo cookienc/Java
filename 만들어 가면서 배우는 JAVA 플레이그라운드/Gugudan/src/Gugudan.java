@@ -1,18 +1,62 @@
 // import java.util.*;
 public class Gugudan {
-	public static void main(String[] args) {
+	
+	public static int[] calculate(int times) {
 		int[] result = new int[9];
-		
-		for(int i = 2; i < 10 ; i++) {
-			for(int j = 0; j < result.length; j++) {
-				result[j] = i * (j + 1);
-			}
-			for(int tmp : result) {
-				System.out.println(tmp);
-			}
+		for(int i = 0; i < result.length; i++) {
+			result[i] = times * (i + 1);
+		}
+		return result;
+	}
+	
+	public static void print(int[] result) {
+		for(int tmp : result) {
+			System.out.println(tmp);
 		}
 	}
+	
+	public static void main(String[] args) {
+		int[] result = calculate(2);
+		print(result);
+		
+		result = calculate(3);
+		print(result);
+		
+		result = calculate(4);
+		print(result);
+		
+		result = calculate(5);
+		print(result);
+		
+		result = calculate(6);
+		print(result);
+		
+		result = calculate(7);
+		print(result);
+		
+		result = calculate(8);
+		print(result);
+		
+		result = calculate(9);
+		print(result);
+		
+		
+	}
 }
+		
+		
+		//		int[] result = new int[9];
+//		
+//		for(int i = 2; i < 10 ; i++) {
+//			for(int j = 0; j < result.length; j++) {
+//				result[j] = i * (j + 1);
+//			}
+//			for(int tmp : result) {
+//				System.out.println(tmp);
+//			}
+//		}
+//	}
+//}
 //	
 //	
 //		result = new int[9];
