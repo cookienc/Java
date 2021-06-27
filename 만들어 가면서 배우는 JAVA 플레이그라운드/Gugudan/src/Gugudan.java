@@ -2,71 +2,76 @@
 public class Gugudan {
 	public static void main(String[] args) {
 		int[] result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 2 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-	
-	
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 3 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
 		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 4 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 5 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 6 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 7 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 8 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
-		}
-		
-		result = new int[9];
-		for(int i = 0; i < result.length; i++) {
-			result[i] = 9 * (i + 1);
-		}
-		for(int tmp : result) {
-			System.out.println(tmp);
+		for(int i = 2; i < 10 ; i++) {
+			for(int j = 0; j < result.length; j++) {
+				result[j] = i * (j + 1);
+			}
+			for(int tmp : result) {
+				System.out.println(tmp);
+			}
 		}
 	}
 }
+//	
+//	
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 3 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 4 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 5 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 6 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 7 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 8 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//		
+//		result = new int[9];
+//		for(int i = 0; i < result.length; i++) {
+//			result[i] = 9 * (i + 1);
+//		}
+//		for(int tmp : result) {
+//			System.out.println(tmp);
+//		}
+//	}
+//}
 		
 		
 		
