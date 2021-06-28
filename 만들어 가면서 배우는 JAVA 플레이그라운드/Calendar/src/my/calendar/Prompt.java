@@ -34,18 +34,12 @@ public class Prompt {
 			System.out.print("MONTH> ");
 			int month = scanner.nextInt();
 			
-			System.out.println("첫번째 요일을 입력하세요. (SU, MO, TU, WE, TH, FR, SA)");
-			System.out.print("WEEKDAY> ");
-			String str_weekday = scanner.next();
-			int weekday = parseDay(str_weekday);
-			
-			
 			if (month < 1 || month > 12) 
 				System.out.println("잘못된 입력입니다.");;
-			cal.printCalendar(year, month, weekday);
+			cal.printCalendar(year, month);
 		}
 		
-		System.out.println("반복이 끝났습니다.%n");
+		System.out.println("반복이 끝났습니다.");
 		scanner.close();
 	
 	}
