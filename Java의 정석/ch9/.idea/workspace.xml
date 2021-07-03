@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="de936fc3-4a81-4bc3-8b11-ee784b92034b" name="Default Changelist" comment="refactor : Refactoring gitignore file">
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/CloseException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/CloseableResource.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx12.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx13.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx14.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx16.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx17.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx8.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/ExceptionEx9.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/FinallyTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/FinallyTest2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/FinallyTest3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/InstallException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/MemoryException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/SpaceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/TryWithResourceEx.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ch8/out/production/ch8/chapter/eight/WorkException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx10.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx11.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx11.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx15.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx15.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/ExceptionEx2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ch8/src/chapter/eight/NewExceptionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ch8/src/chapter/eight/NewExceptionTest.java" afterDir="false" />
+    </list>
+    <list id="1938ba8a-083f-4620-8473-a2152fb5a99f" name="add : Add Chapter09 file" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ch9.iml" afterDir="false" />
+    </list>
+    <list id="bb728046-ba91-461b-93b0-ebf0b4d4d632" name="add : Add EqualsEx1" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/Ch9/chapter/nine/EqualsEx1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Ch9/chapter/nine/Value.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chapter/nine/EqualsEx1.java" afterDir="false" />
+    </list>
+    <list id="69a60185-2484-4888-b610-6b19d890dc2e" name="refactor : Refactoring gitignore file" comment="" />
+    <list id="7af39d64-9dbd-4162-bb40-ff02f9880473" name="Revert &quot;add : Add EqualsEx1&quot;" comment="Revert &quot;add : Add EqualsEx1&quot;&#10;&#10;This reverts commit 85cb3cf4" />
+    <list id="695856ef-1b26-4ba0-8dbe-9db931559deb" name="Revert &quot;refactor : Refactoring gitignore file&quot;" comment="Revert &quot;refactor : Refactoring gitignore file&quot;&#10;&#10;This reverts commit 6cd43c4f" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1unJwFemogquMV8XWQXb1xOI8RL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager">
+    <configuration name="EqualsEx1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="chapter.nine.EqualsEx1" />
+      <module name="Ch9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chapter.nine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EqualsEx1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de936fc3-4a81-4bc3-8b11-ee784b92034b" name="Default Changelist" comment="" />
+      <changelist id="bb728046-ba91-461b-93b0-ebf0b4d4d632" name="add : Add EqualsEx1" comment="" />
+      <changelist id="69a60185-2484-4888-b610-6b19d890dc2e" name="refactor : Refactoring gitignore file" comment="" />
+      <changelist id="1938ba8a-083f-4620-8473-a2152fb5a99f" name="add : Add Chapter09 file" comment="" />
+      <created>1625295658405</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1625295658405</updated>
+      <workItem from="1625295659814" duration="1233000" />
+    </task>
+    <task id="LOCAL-00001" summary="add : Add Chapter09 file">
+      <created>1625296712111</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1625296712111</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add : Add EqualsEx1">
+      <created>1625296771110</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1625296771110</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add : Add EqualsEx1">
+      <created>1625296826607</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625296826607</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactor : Refactoring gitignore file">
+      <created>1625296982247</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1625296982247</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add : Add Chapter09 file" />
+    <MESSAGE value="add : Add EqualsEx1" />
+    <MESSAGE value="refactor : Refactoring gitignore file" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor : Refactoring gitignore file" />
+  </component>
+</project>
