@@ -12,12 +12,20 @@ class WordScramble {
     } // main
 
     public static String getAnswer(String[] strArr) {
-        // 내용을 완성하세요.
-
+        return strArr[((int) Math.random() * 10) % strArr.length];
     }
 
     public static String getScrambledWord(String str) {
-        // 내용을 완성하세요.
+        char[] word = str.toCharArray();
 
+        for(int i = 0; i < word.length; i++) {
+            int index = (int) (Math.random() * str.length());
+
+            char tmp = word[i];
+
+            word[i] = word[index];
+            word[index] = tmp;
+        }
+        return new String(word);
     } // scramble(String str)
 }
