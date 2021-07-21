@@ -4,24 +4,26 @@ import java.util.*;
 class WordScramble {
     public static void main(String[] args) {
         String[] strArr = {"CHANGE", "LOVE", "HOPE", "VIEW"};
+        Scanner scanner = new Scanner(System.in);
 
-        String answer = Answer.getAnswer(strArr);
-        String question = ScrambledWord.getScrambledWord(answer);
+        while(true) {
 
-        while (true) {
-            System.out.println("Question :" + question);
-            System.out.print("Your answer is :");
+            String answer = Answer.getAnswer(strArr);
+            String question = ScrambledWord.getScrambledWord(answer);
 
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
+            while (true) {
+                System.out.println("Question :" + question);
+                System.out.print("Your answer is :");
+                String input = scanner.nextLine();
 
-            if((input.equals("q")) || (input.equals("Q"))) System.exit(0);
+                if ((input.equals("q")) || (input.equals("Q"))) System.exit(0);
 
-            if(input.equals(answer)) break;
-
-            scanner.close();
-        } // while
-
+                if (input.equals(answer)) {
+                    System.out.println("정답입니다!!");
+                    break;
+                }
+            } // while
+        }
     } // main
 }
 
