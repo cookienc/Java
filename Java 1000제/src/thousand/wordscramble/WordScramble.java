@@ -1,14 +1,14 @@
 package thousand.wordscramble;
 import java.util.*;
 
-class WordScrambleEx2 {
+class WordScramble {
     public static void main(String[] args) {
-        String[] strArr = { "CHANGE", "LOVE", "HOPE", "VIEW"};
+        String[] strArr = {"CHANGE", "LOVE", "HOPE", "VIEW"};
 
-        String answer = getAnswer(strArr);
-        String question = getScrambledWord(answer);
+        String answer = Answer.getAnswer(strArr);
+        String question = ScrambledWord.getScrambledWord(answer);
 
-        while(true) {
+        while (true) {
             System.out.println("Question :" + question);
             System.out.print("Your answer is :");
 
@@ -24,22 +24,6 @@ class WordScrambleEx2 {
         } // while
 
     } // main
-
-    public static String getAnswer(String[] strArr) {
-        return strArr[((int) Math.random() * 10) % strArr.length];
-    }
-
-    public static String getScrambledWord(String str) {
-        char[] word = str.toCharArray();
-
-        for(int i = 0; i < word.length; i++) {
-            int index = (int) (Math.random() * str.length());
-
-            char tmp = word[i];
-
-            word[i] = word[index];
-            word[index] = tmp;
-        }
-        return new String(word);
-    } // scramble(String str)
 }
+
+
