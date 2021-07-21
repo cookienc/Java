@@ -12,15 +12,14 @@ class WordScramble {
             System.out.println("Question :" + question);
             System.out.print("Your answer is :");
 
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
 
-            // 1. 화면을 통해 사용자의 입력을 받는다.(Scanner클래스 사용)
+            if((input.equals("q")) || (input.equals("Q"))) System.exit(0);
 
-            // 2. 사용자가 q 또는 Q를 입력하면 프로그램을 종료한다.
+            if(input.equals(answer)) break;
 
-            // 3. 사용자가 정답을 맞출때까지 반복하다가
-
-            //     사용자가 정답을 맞추면, while문을 빠져나간다.
-
+            scanner.close();
         } // while
 
     } // main

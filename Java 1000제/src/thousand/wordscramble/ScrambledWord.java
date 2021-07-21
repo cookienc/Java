@@ -9,7 +9,6 @@ public class ScrambledWord {
             int index = (int) (Math.random() * str.length());
 
             char tmp = word[i];
-
             word[i] = word[index];
             word[index] = tmp;
         }
