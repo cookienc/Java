@@ -22,6 +22,8 @@ class WordScramble {
                     System.out.println("정답입니다!!");
                     System.out.println();
                     break;
+                } else {
+                    System.out.println(input + "은 답이 아닙니다.");
                 }
             } // while
         }
