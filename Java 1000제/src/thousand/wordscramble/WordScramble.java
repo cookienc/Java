@@ -20,6 +20,7 @@ class WordScramble {
 
                 if (input.equals(answer)) {
                     System.out.println("정답입니다!!");
+                    System.out.println();
                     break;
                 }
             } // while
