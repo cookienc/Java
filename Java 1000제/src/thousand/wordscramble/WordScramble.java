@@ -10,6 +10,11 @@ class WordScramble {
 
             String answer = Answer.getAnswer(strArr);
             String question = ScrambledWord.getScrambledWord(answer);
+            char[] hint = new char[answer.length()];
+
+            for(int i = 0; i < hint.length; i++) {
+                hint[i] = '_';
+            }
 
             while (true) {
                 System.out.println("Question :" + question);
@@ -24,6 +29,7 @@ class WordScramble {
                     break;
                 } else {
                     System.out.println(input + "은 답이 아닙니다.");
+                    System.out.println("Hint:"+ Hint.getHint(answer,hint));
                 }
             } // while
         }
