@@ -1,4 +1,9 @@
 # Java
+## CodeUp기초
+> [코드업](https://codeup.kr/problemsetsol.php?psid=23)에서 제공하는 C언어 기초 100제를 JAVA로 풀이한 디렉토리입니다.
+
+<br>
+
 ## Java 1000제
 > [남궁성의 코드초보스터디 카페](https://cafe.naver.com/javachobostudy)에서 제공하는 자바 문제들을 푸는 디렉토리입니다.
 ### src/thousand/wordscramble
