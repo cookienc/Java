@@ -8,11 +8,15 @@ public class Member {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
     public Long getId() {
         return id;
@@ -30,8 +34,11 @@ public class Member {
         this.username = username;
     }
 
-    public Member() {
-
+    public Long getTeamId() {
+        return teamId;
     }
 
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
 }
