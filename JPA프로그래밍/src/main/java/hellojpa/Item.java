@@ -12,7 +12,7 @@ public abstract class Item {
     private Long id;
 
     private String name;
-    private int priace;
+    private int price;
 
     public Long getId() {
         return id;
@@ -30,11 +30,11 @@ public abstract class Item {
         this.name = name;
     }
 
-    public int getPriace() {
-        return priace;
+    public int getPrice() {
+        return price;
     }
 
-    public void setPriace(int priace) {
-        this.priace = priace;
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
