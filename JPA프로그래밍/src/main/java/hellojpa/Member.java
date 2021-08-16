@@ -25,7 +25,18 @@ public class Member {
 
     //주소
     @Embedded
-    private Address HomeAddress;
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="city",
+                    column=@Column(name = "WORK_CITY")),
+            @AttributeOverride(name="street",
+                    column=@Column(name = "WORK_STREET")),
+            @AttributeOverride(name="zipcode",
+                    column=@Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
 
     public Long getId() {
         return id;
@@ -60,11 +71,19 @@ public class Member {
     }
 
     public Address getHomeAddress() {
-        return HomeAddress;
+        return homeAddress;
     }
 
     public void setHomeAddress(Address homeAddress) {
-        HomeAddress = homeAddress;
+        this.homeAddress = homeAddress;
+    }
+
+    public Address getWorkAddress() {
+        return workAddress;
+    }
+
+    public void setWorkAddress(Address workAddress) {
+        this.workAddress = workAddress;
     }
 }
 
