@@ -4,6 +4,7 @@ import javax.lang.model.SourceVersion;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -28,6 +29,22 @@ public class JpaMain {
             member.getAddressesHistory().add(new Address("old2", "street", "1000"));
 
             em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            System.out.println("========== START ==========");
+            Member findMember = em.find(Member.class, member.getId());
+
+            List<Address> addressHistory = findMember.getAddressesHistory();
+            for (Address address : addressHistory) {
+                System.out.println("address = " + address.getCity());
+            }
+
+            Set<String> favoriteFoods = findMember.getFavoriteFoods();
+            for (String favoriteFood : favoriteFoods) {
+                System.out.println("favoriteFood = " + favoriteFood);
+            }
 
             tx.commit();
         } catch (Exception e) {
