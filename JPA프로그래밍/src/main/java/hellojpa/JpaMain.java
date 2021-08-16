@@ -16,15 +16,18 @@ public class JpaMain {
 
         try {
 
-            Address address = new Address("city", "street", "10");
-
             Member member = new Member();
             member.setUsername("member1");
-            member.setHomeAddress(address);
-            em.persist(member);
+            member.setHomeAddress(new Address("homeCity", "street", "1000"));
 
-            Address newAddress = new Address("NewCity", address.getStreet(), address.getZipcode());
-            member.setHomeAddress(newAddress);
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("족발");
+            member.getFavoriteFoods().add("피자");
+
+            member.getAddressesHistory().add(new Address("old1", "street", "1000"));
+            member.getAddressesHistory().add(new Address("old2", "street", "1000"));
+
+            em.persist(member);
 
             tx.commit();
         } catch (Exception e) {
