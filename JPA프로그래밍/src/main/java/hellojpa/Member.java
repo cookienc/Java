@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Member extends BaseEntity {
-
+public class Member {
 
     @Id
     @GeneratedValue
@@ -19,6 +18,14 @@ public class Member extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Team team;
+
+    //기간 Period
+    @Embedded
+    private Period workPeriod;
+
+    //주소
+    @Embedded
+    private Address HomeAddress;
 
     public Long getId() {
         return id;
@@ -42,6 +49,22 @@ public class Member extends BaseEntity {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public Period getWorkPeriod() {
+        return workPeriod;
+    }
+
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
+    }
+
+    public Address getHomeAddress() {
+        return HomeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        HomeAddress = homeAddress;
     }
 }
 
