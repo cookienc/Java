@@ -32,7 +32,7 @@ public class Member {
 
     @ElementCollection
     @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
-        @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     )
     @Column(name = "FOOD_NAME")
     private Set<String> favoriteFoods = new HashSet<>();
@@ -82,5 +82,23 @@ public class Member {
     public void setHomeAddress(Address homeAddress) {
         this.homeAddress = homeAddress;
     }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+    public List<Address> getAddressesHistory() {
+        return addressesHistory;
+    }
+
+    public void setAddressesHistory(List<Address> addressesHistory) {
+        this.addressesHistory = addressesHistory;
+    }
 }
+
+
 
