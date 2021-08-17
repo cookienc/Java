@@ -21,6 +21,7 @@ public class JpaMain {
                 Member member = new Member();
                 member.setUsername("member");
                 member.setAge(10);
+                member.setType(MemberType.ADMIN);
 
                 member.setTeam(team);
 
@@ -30,9 +31,19 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m left join Team t on m.username = t.name";
-            List<Member> result = em.createQuery(query, Member.class)
+            String query =
+                    "select " +
+                            "case when m.age <= 10  then '학생요금'" +
+                            "     when m.age >= 60  then '경로요금'" +
+                            "     else '일반요금'" +
+                            "end " +
+                    "from Member m";
+            List<String> result = em.createQuery(query, String.class)
                     .getResultList();
+
+            for (String s : result) {
+                System.out.println("s = " + s);
+            }
 
             tx.commit();
         } catch (Exception e) {
