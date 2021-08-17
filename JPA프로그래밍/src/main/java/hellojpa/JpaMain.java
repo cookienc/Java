@@ -2,6 +2,9 @@ package hellojpa;
 
 import javax.lang.model.SourceVersion;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -17,15 +20,15 @@ public class JpaMain {
 
         try {
 
-            List<Member> result = em.createQuery(
-                    "select m From Member m where m.username like '%kim%'",
-                    Member.class
-            ).getResultList();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Member> query = cb.createQuery(Member.class);
 
-            for (Member member : result) {
-                System.out.println("member = " + member);
-                
-            }
+            Root<Member> m = query.from(Member.class);
+
+            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("username"), "kim"));
+            List<Member> resultList = em.createQuery(cq)
+                    .getResultList();
+
 
             tx.commit();
         } catch (Exception e) {
