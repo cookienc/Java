@@ -31,11 +31,11 @@ public class JpaMain {
             member2.setUsername("관리자2");
             em.persist(member2);
 
-            String query = "select m.username from Member m";
-            List<String> result = em.createQuery(query, String.class)
+            String query = "select m.team from Member m";
+            List<Team> result = em.createQuery(query, Team.class)
                     .getResultList();
 
-            for (String s : result) {
+            for (Team s : result) {
                 System.out.println("s = " + s);
             }
 
