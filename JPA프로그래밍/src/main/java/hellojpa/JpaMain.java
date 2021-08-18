@@ -6,6 +6,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -31,12 +32,13 @@ public class JpaMain {
             member2.setUsername("관리자2");
             em.persist(member2);
 
-            String query = "select m.team from Member m";
-            List<Team> result = em.createQuery(query, Team.class)
+            String query = "select t.members from Team t";
+            Collection result = em.createQuery(query, Collection.class)
                     .getResultList();
 
-            for (Team s : result) {
-                System.out.println("s = " + s);
+            for (Object o : result) {
+                System.out.println("o = " + o);
+                
             }
 
             tx.commit();
