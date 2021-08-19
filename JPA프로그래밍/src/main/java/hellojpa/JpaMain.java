@@ -49,6 +49,10 @@ public class JpaMain {
 
             System.out.println("resultCount = " + resultCount);
 
+            System.out.println("member1.getAge = " + member1.getAge());
+            System.out.println("member2.getAge = " + member2.getAge());
+            System.out.println("member3.getAge = " + member3.getAge());
+
             tx.commit();
 
         } catch (Exception e) {
