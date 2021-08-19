@@ -23,7 +23,7 @@ public class JpaMain {
             em.persist(teamA);
 
             Team teamB = new Team();
-            teamB.setName("팀A");
+            teamB.setName("팀B");
             em.persist(teamB);
 
             Member member1 = new Member();
@@ -44,7 +44,7 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m From Member m";
+            String query = "select m From Member m join fetch m.team";
             List<Member> result = em.createQuery(query, Member.class)
                     .getResultList();
 
