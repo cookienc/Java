@@ -21,7 +21,9 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "USERNAME")
+    private int age;
+
+        @Column(name = "USERNAME")
     private String username;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,6 +54,14 @@ public class Member {
     @OneToMany(cascade = ALL, orphanRemoval = true)
     @JoinColumn(name = "MEMBER_ID")
     private List<AddressEntity> addressesHistory = new ArrayList<>();
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public Long getId() {
         return id;
