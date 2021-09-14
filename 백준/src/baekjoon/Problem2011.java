@@ -7,48 +7,40 @@ import java.io.InputStreamReader;
 public class Problem2011 {
 
     private static int[] dp;
+    private static int mod = 1000000;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        String tmp = bufferedReader.readLine();
+        String input = bufferedReader.readLine();
 
-        int length = tmp.length();
-
-        int num = Integer.parseInt(tmp);
-
+        int length = input.length();
 
         dp = new int[length + 1];
 
         dp[0] = 1;
+        for (int i = 1; i <= length; i++) {
+            int num = input.charAt(i - 1) - '0';
+            if (1 <= num && num <= 9) {
+                dp[i] = (dp[i] + dp[i - 1]) % mod;
+            }
 
-        if ((tmp.charAt(0) >= '1' && tmp.charAt(0) <= '2') &&
-                (tmp.charAt(1) >= '1' && tmp.charAt(1) <= '6')) {
-            dp[1] = 2;
-        } else {
-            dp[1] = 1;
-        }
+            if (i == 1) {
+                continue;
+            }
 
-        if (tmp.charAt(0) == '0' ||
-                ((tmp.charAt(tmp.length() - 1) == '0') &&
-                        tmp.charAt(tmp.length() - 2) > '2')) {
-            System.out.println(0);
-            return;
-        }
+            if ((input.charAt(i - 2) - '0') == 0) {
+                continue;
+            }
 
-        for (int i = 2; i < length; i++) {
+            int prev = (input.charAt(i - 2) - '0') * 10;
+            int curr = input.charAt(i - 1) - '0';
 
-            char idx = tmp.charAt(i);
-            char preIdx = tmp.charAt(i - 1);
-
-            if ((idx >= '1' && idx <= '6') &&
-                    (preIdx >= '1' && preIdx <= '2')) {
-                dp[i] = (dp[i - 1] + dp[i - 2]) % 1000000;
-            } else {
-                dp[i] = dp[i - 1];
+            if (prev + curr <= 26) {
+                dp[i] = (dp[i] + dp[i - 2]) % mod;
             }
         }
 
-        System.out.println(dp[length - 1]);
+        System.out.println(dp[length]);
     }
 }
