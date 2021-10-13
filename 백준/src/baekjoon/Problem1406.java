@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Problem1406 {
@@ -15,11 +16,10 @@ public class Problem1406 {
 
         String word = bufferedReader.readLine();
 
-        List words = new ArrayList<>();
+        Stack<Character> lStack = new Stack();
+        Stack<Character> rStack = new Stack();
 
-        initialize(word, words);
-
-        int index = words.size();
+        initialize(word, lStack);
 
         int num = Integer.parseInt(bufferedReader.readLine());
 
@@ -31,34 +31,41 @@ public class Problem1406 {
             switch (command) {
 
                 case "L":
-                    if (index != 0) {
-                        index--;
+                    if (lStack.isEmpty()) {
+                        break;
                     }
+
+                    rStack.add(lStack.pop());
                     break;
 
                 case "D":
-                    if (index != words.size()) {
-                        index++;
+                    if (rStack.isEmpty()) {
+                        break;
                     }
+                    lStack.add(rStack.pop());
                     break;
 
                 case "B":
-                    if (index != 0) {
-                        words.remove(index - 1);
-                        index--;
+                    if (lStack.isEmpty()) {
+                        break;
                     }
+                    lStack.pop();
                     break;
 
                 case "P":
-                    words.add(index, stringTokenizer.nextToken());
-                    index++;
+                    lStack.add(stringTokenizer.nextToken().charAt(0));
                     break;
             }
         }
-        for (Object o : words) {
-            stringBuilder.append(o);
+
+        while (!lStack.isEmpty()) {
+            rStack.add(lStack.pop());
         }
-        stringBuilder.append("\n");
+
+        while (!rStack.isEmpty()) {
+            stringBuilder.append(rStack.pop());
+        }
+
         System.out.println(stringBuilder);
     }
 
