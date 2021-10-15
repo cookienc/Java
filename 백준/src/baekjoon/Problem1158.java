@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Problem1158 {
@@ -19,40 +20,29 @@ public class Problem1158 {
 
         int count = 1;
 
-        List list = new LinkedList<Integer>();
-        List answer = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<Integer>();
 
-        initialize(num, list);
+        initialize(num, queue);
 
-        while (!list.isEmpty()) {
-            for (int i = 0; i < list.size(); i++, count++) {
-                if (count == space) {
-                    answer.add(list.get(i));
-                    list.remove(i);
-
-                    if (i == list.size()) {
-                        count = 0;
-                    } else {
-                        count = 1;
-                    }
-                }
-            }
-        }
         stringBuilder.append("<");
-        for (int i = 0; i < answer.size() - 1; i++) {
-            stringBuilder.append(answer.get(i))
-                    .append(", ");
+
+        while (queue.size() != 1) {
+            for (int i = 0; i < space - 1; i++) {
+                queue.offer(queue.poll());
+            }
+
+            stringBuilder.append(queue.poll() + ", ");
         }
-        stringBuilder.append(answer.get(answer.size() - 1))
-                .append(">");
+
+        stringBuilder.append(queue.poll() + ">");
 
         System.out.println(stringBuilder);
 
     }
 
-    private static void initialize(int num, List list) {
+    private static void initialize(int num, Queue queue) {
         for (int i = 0; i < num; i++) {
-            list.add(i, i + 1);
+            queue.offer(i + 1);
         }
     }
 }
