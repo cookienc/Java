@@ -35,7 +35,7 @@ public class Problem2745 {
         for (int i = 0; i < n.length(); i++) {
 
             if (stack.peek() >= 'A' && stack.peek() <= 'Z') {
-                sum += (int) (stack.pop() - 55) * Math.pow(b, i);
+                sum += (stack.pop() - 'A' + 10) * Math.pow(b, i);
                 continue;
             }
 
