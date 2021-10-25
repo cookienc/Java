@@ -10,20 +10,20 @@ public class Problem1373 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine(), " ");
-
+        StringBuilder stringBuilder = new StringBuilder();
         String n = stringTokenizer.nextToken();
 
         Stack<Character> stack = new Stack<>();
 
         initializeStack(n, stack);
 
-        long sum = 0;
+        stack = binaryToOctal(n, stack);
 
-        sum = binaryToDecimal(n, stack, sum);
+        while (!stack.isEmpty()) {
+            stringBuilder.append(stack.pop());
+        }
 
-        String answer = Long.toOctalString(sum);
-
-        System.out.println(answer);
+        System.out.println(stringBuilder);
     }
 
     private static void initializeStack(String n, Stack<Character> stack) {
@@ -32,11 +32,35 @@ public class Problem1373 {
         }
     }
 
-    private static long binaryToDecimal(String n, Stack<Character> stack, long sum) {
-        for (int i = 0; i < n.length(); i++) {
+    private static Stack<Character> binaryToOctal(String n, Stack<Character> stack) {
 
-            sum += (stack.pop() - '0') * Math.pow(2, i);
+        Stack<Character> reverseStack = new Stack<>();
+
+        int sum = 0;
+
+        while (!stack.isEmpty()) {
+
+            int first = 0;
+            int second = 0;
+            int third = 0;
+
+            if (!stack.isEmpty()) {
+                first = (stack.pop() - '0') * 1;
+            }
+
+            if (!stack.isEmpty()) {
+                second = (stack.pop() - '0') * 2;
+            }
+
+            if (!stack.isEmpty()) {
+                third = (stack.pop() - '0') * 4;
+            }
+
+            sum = first + second + third;
+
+            reverseStack.push((char)(sum + '0'));
         }
-        return sum;
+
+        return reverseStack;
     }
 }
