@@ -19,7 +19,7 @@ public class Problem2089 {
 
         while (num != 0) {
             if (num % -2 == -1) {
-                answer = ((num % -2) + 2) + answer;
+                answer = 1 + answer;
                 num = (num / -2) + 1;
             } else {
                 answer = (num % -2) + answer;
