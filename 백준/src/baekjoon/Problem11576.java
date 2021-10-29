@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Problem11576 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder stringBuilder = new StringBuilder();
 
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine(), " ");
 
@@ -25,31 +27,36 @@ public class Problem11576 {
             list.add(Integer.parseInt(stringTokenizer.nextToken()));
         }
 
-        aToDecimal(a, list);
-        for (int i = 0; i < list.size(); i++) {
-            decimalToB(b, list.get(0));
+        Stack<Integer> reverseAnswer = decimalToB(b, aToDecimal(a, list));
+
+        while (!reverseAnswer.isEmpty()) {
+            stringBuilder.append(reverseAnswer.pop())
+                    .append(" ");
         }
 
-        for (Integer integer : list) {
-            System.out.print(list + " ");
-        }
+        System.out.println(stringBuilder);
     }
 
-    private static Integer decimalToB(int b, Integer number) {
-        String str = " ";
+    private static Stack<Integer> decimalToB(int b, Integer number) {
+
+        Stack<Integer> stack = new Stack<>();
 
         while (number != 0) {
             int temp = number % b;
             number /= b;
-            str = temp + str;
+            stack.push(temp);
         }
 
-        return Integer.parseInt(str);
+        return stack;
     }
 
-    private static void aToDecimal(int a, List<Integer> list) {
-        for (int i = list.size() - 1; i >= 0 ; i--) {
-            list.add(i, list.get(i) * (int)Math.pow(a, i));
+    private static Integer aToDecimal(int a, List<Integer> list) {
+        Integer sum = 0;
+
+        for (int i = 0; i < list.size() ; i++) {
+            sum += list.get(i) * (int)(Math.pow(a, list.size() - (i + 1)));
         }
+
+        return sum;
     }
 }
