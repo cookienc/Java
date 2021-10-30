@@ -22,15 +22,16 @@ public class Problem1978 {
                 continue;
             }
 
-            int temp = 0;
+            boolean isPrimeNumber = true;
 
             for (int j = 2; j < a; j++) {
-                if (a % j != 0) {
-                    temp++;
+                if (a % j == 0) {
+                    isPrimeNumber = false;
+                    break;
                 }
             }
 
-            if (temp == (a - 2)) {
+            if (isPrimeNumber) {
                 count++;
             }
 
