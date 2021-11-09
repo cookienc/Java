@@ -7,12 +7,8 @@ import java.util.StringTokenizer;
 
 public class Problem2004 {
 
-        private static int fiveUp = 0;
-        private static int fiveDown = 0;
-        private static int countFive = 0;
-        private static int twoUp = 0;
-        private static int twoDown = 0;
-        private static int countTwo = 0;
+    private static int five = 0;
+    private static int two = 0;
 
     public static void main(String[] args) throws IOException {
 
@@ -23,45 +19,33 @@ public class Problem2004 {
         int n = Integer.parseInt(stringTokenizer.nextToken());
         int m = Integer.parseInt(stringTokenizer.nextToken());
 
-        findFiveUp(n);
-        findFiveDown(n - m);
-        findFiveDown(m);
-
-        findTwoUp(n);
-        findTwoDown(n - m);
-        findTwoDown(m);
-
-        countFive = fiveUp - fiveDown;
-        countTwo = twoUp - twoDown;
+        int countFive = findFive(n) - findFive(n - m) - findFive(m);
+        int countTwo = findTwo(n) - findTwo(n - m) - findTwo(m);
 
         System.out.println(Math.min(countFive, countTwo));
     }
 
-    private static void findFiveDown(int n) {
+    private static int findFive(int n) {
+
+        five = 0;
+
         while (n >= 5) {
-            fiveDown += n / 5;
+            five += n / 5;
             n /= 5;
         }
+
+        return five;
     }
 
-    private static void findFiveUp(int n) {
-        while (n >= 5) {
-            fiveUp += n / 5;
-            n /= 5;
-        }
-    }
+    private static int findTwo(int n) {
 
-    private static void findTwoDown(int n) {
+        two = 0;
+
         while (n >= 2) {
-            twoDown += n / 2;
+            two += n / 2;
             n /= 2;
         }
-    }
 
-    private static void findTwoUp(int n) {
-        while (n >= 2) {
-            twoUp += n / 2;
-            n /= 2;
-        }
+        return two;
     }
 }
