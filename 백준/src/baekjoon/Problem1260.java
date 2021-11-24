@@ -1,84 +1,111 @@
 package baekjoon;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Problem1260 {
 
-    static int map[][];
-    static boolean[] visit;
-    static int n,m,v;
+    static int N;
+    static int M;
+    static int V;
 
-    public static void main(String[] args) throws IOException {
+    static List<Integer>[] line;
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        StringTokenizer st = new StringTokenizer(s," ");
+    static int index = 0;
+    static int[] visited = new int[1001];
+    static boolean isEnd = false;
 
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        v = Integer.parseInt(st.nextToken());
+    public static void main(String[] args) throws Exception
+    {
 
-        map =new int[n+1][n+1];
-        visit = new boolean[n+1];
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int j = 0; j < n + 1; j++) {
-            Arrays.fill(map[j], 0);
+        String input = bufferedReader.readLine();
+
+        StringTokenizer stringTokenizer = new StringTokenizer(input);
+        N = Integer.parseInt(stringTokenizer.nextToken());
+        M = Integer.parseInt(stringTokenizer.nextToken());
+        V = Integer.parseInt(stringTokenizer.nextToken());
+
+        line = new ArrayList[N + 1];
+
+        for (int i = 1; i <= N; i++)
+        {
+            line[i] = new ArrayList<Integer>();
         }
 
-        Arrays.fill(visit, false);
+        String[] inputs = new String[2];
 
-        initializeMap(br);
-        dfs(v);
+        for (int i = 1; i <= M; i++)
+        {
+            input = bufferedReader.readLine();
+            inputs = input.split(" ");
+            line[Integer.parseInt(inputs[0])].add(Integer.parseInt(inputs[1]));
+            line[Integer.parseInt(inputs[1])].add(Integer.parseInt(inputs[0]));
+        }
+
+        for (int i = 1; i <= N; i++)
+        {
+            Collections.sort(line[i]);
+        }
+
+        // DFS
+        visited[V] = 1;
+
+        System.out.print(V + " ");
+
+        index++;
+
+        dfs(V);
+
+        for (int i = 1; i <= N; i++)
+        {
+            visited[i] = 0;
+        }
+
         System.out.println();
 
-        Arrays.fill(visit, false);
-        bfs(v);
+        // BFS
+        bfs(V);
+        System.out.println();
     }
 
-    private static void initializeMap(BufferedReader br) throws IOException {
-        for (int i = 0; i < m; i++) {
-            String edge = br.readLine();
-            StringTokenizer st1 = new StringTokenizer(edge, " ");
-            int a = Integer.parseInt(st1.nextToken());
-            int b = Integer.parseInt(st1.nextToken());
-            map[a][b] = 1;
-            map[b][a] = 1;
-        }
-    }
-
-    public static void dfs(int i){
-        visit[i] = true;
-        System.out.print(i+" ");
-        for (int j = 1; j < n + 1; j++) {
-            if (map[i][j] == 1 && visit[j] == false) {
-                dfs(j);
-            }
-        }
-    }
-
-    public static void bfs(int i){
-
+    private static void bfs(int node)
+    {
         Queue<Integer> queue = new LinkedList<Integer>();
-        queue.offer(i);
-        visit[i] = true;
 
-        while(!queue.isEmpty()){
-            int temp = queue.poll();
-            System.out.print(temp+" ");
+        queue.add(node);
+        visited[node] = 1;
+        index = 1;
 
-            for (int k = 1; k <= n; k++) {
-                if (map[temp][k] == 1 && visit[k] == false) {
-                    queue.offer(k);
-                    visit[k] = true;
+        while (queue.isEmpty() == false)
+        {
+            node = queue.remove();
+            System.out.print(node + " ");
+            for (int next : line[node])
+            {
+                if (visited[next] == 0)
+                {
+                    index++;
+                    visited[next] = 1;
+                    queue.add(next);
                 }
             }
         }
     }
-}
 
+    private static void dfs(int node)
+    {
+        for (int next : line[node])
+        {
+            if (visited[next] == 0)
+            {
+                System.out.print(next + " ");
+                index++;
+                visited[next] = 1;
+                dfs(next);
+            }
+        }
+    }
+}
