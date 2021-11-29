@@ -62,7 +62,7 @@ public class Problem1260 {
             Collections.sort(map[i]);
         }
     }
-
+//test
     private static void initializeList(BufferedReader bufferedReader) throws IOException {
         StringTokenizer stringTokenizer;
         for (int i = 1; i < n + 1; i++) {
