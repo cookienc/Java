@@ -8,7 +8,7 @@ import java.util.*;
 public class Problem1260 {
 
     private static List<Integer>[] map;
-    private static List<Integer> dfsList;
+    private static List<Integer> answerList;
     private static boolean[] isVisited;
     private static int n;
     private static int m;
@@ -24,7 +24,7 @@ public class Problem1260 {
         v = Integer.parseInt(stringTokenizer.nextToken());
 
         map = new ArrayList[n + 1];
-        dfsList = new ArrayList<>();
+        answerList = new ArrayList<>();
         isVisited = new boolean[n + 1];
 
 
@@ -34,10 +34,38 @@ public class Problem1260 {
 
         dfs(v);
 
-        for (Integer integer : dfsList) {
+        for (Integer integer : answerList) {
             System.out.print(integer + " ");
         }
+        System.out.println();
 
+        Arrays.fill(isVisited, false);
+        answerList.clear();
+
+        bfs(v);
+
+        for (Integer integer : answerList) {
+            System.out.print(integer + " ");
+        }
+    }
+
+    private static void bfs(int num) {
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(num);
+        isVisited[num] = true;
+
+        while (!queue.isEmpty()) {
+            int x = queue.poll();
+            answerList.add(x);
+
+            for (int y : map[x]) {
+                if (!isVisited[y]) {
+                    isVisited[y] = true;
+                    queue.add(y);
+                }
+            }
+        }
 
     }
 
@@ -48,7 +76,7 @@ public class Problem1260 {
         }
 
         isVisited[num] = true;
-        dfsList.add(num);
+        answerList.add(num);
 
         for (int y : map[num]) {
             if (!isVisited[y]) {
@@ -62,7 +90,7 @@ public class Problem1260 {
             Collections.sort(map[i]);
         }
     }
-//test
+
     private static void initializeList(BufferedReader bufferedReader) throws IOException {
         StringTokenizer stringTokenizer;
         for (int i = 1; i < n + 1; i++) {
