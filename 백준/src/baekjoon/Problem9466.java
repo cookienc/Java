@@ -6,53 +6,57 @@ import java.util.StringTokenizer;
 
 public class Problem9466 {
 
-	private static int T;
-	private static int N;
-	private static int cycleMember;
-	private static int array[];
-	private static boolean isVisited[];
-	private static boolean isDone[];
+	static int n;
+	static int[] arr;
+	static int count = 0;
+	static boolean[] visited;
+	static boolean[] finished;
 
 	public static void main(String[] args) throws Exception {
-
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		T = Integer.parseInt(bufferedReader.readLine());
+		StringTokenizer stringTokenizer;
 
-		for (int t = 1; t <= T; t++) {
-			N = Integer.parseInt(bufferedReader.readLine());
-			cycleMember = 0;
-			array = new int[N + 1];
-			isDone = new boolean[N + 1];
-			isVisited = new boolean[N + 1];
-			StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+		int tc = Integer.parseInt(bufferedReader.readLine());
 
-			for (int n = 1; n <= N; n++) {
-				array[n] = Integer.parseInt(stringTokenizer.nextToken());
+		for (int t = 0; t < tc; t++) {
+			n = Integer.parseInt(bufferedReader.readLine());
+			arr = new int[n + 1];
+			visited = new boolean[n + 1];
+			finished = new boolean[n + 1];
+			count = 0;
+
+			stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+			for (int i = 1; i < n + 1; i++) {
+				arr[i] = Integer.parseInt(stringTokenizer.nextToken());
 			}
 
-			for (int i = 1; i <= N; i++) {
-				if (isDone[i]) {
-					continue;
-				}
+			for (int i = 1; i < n + 1; i++) {
 				dfs(i);
 			}
-			System.out.println(N - cycleMember);
+
+			System.out.println(n - count);
 		}
 	}
 
-	public static void dfs(int idx) {
-		if (isDone[idx]) {
+	static void dfs(int now) {
+		if (visited[now]) {
 			return;
 		}
 
-		if (isVisited[idx]) {
-			isDone[idx] = true;
-			cycleMember++;
+		visited[now] = true;
+		int next = arr[now];
+
+		if (visited[next] != true) {
+			dfs(next);
 		}
 
-		isVisited[idx] = true;
-		dfs(array[idx]);
-		isDone[idx] = true;
-		isVisited[idx] = false;
+		if (finished[next] != true) {
+			count++;
+			for (int i = next; i != now; i = arr[i]) { //싸이클 찾기
+				finished[i] = true;
+				count++;
+			}
+		}
+		finished[now] = true;
 	}
 }
