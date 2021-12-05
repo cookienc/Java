@@ -7,114 +7,83 @@ import java.util.*;
 
 /**
  * 출처 : https://www.acmicpc.net/problem/2667
- *
+ * 		 https://n1tjrgns.tistory.com/245
+ * <p>
  * TODO 1. 단지 입력 nxn
  * 		2. 단지 출력 : 총 단지 수, 단지 별 가구 수(오름차순)
  * 		3. 단지 찾는 알고리즘 -> bfs
  */
 public class Problem2667 {
-
-	private static int[][] map;
-	private static boolean[][] isVisited;
-	private static int count = 0;
-	private static int n = 0;
-	private static int numberOfMember = 0;
+	private static int dx[] = {0, 0, 1, -1};
+	private static int dy[] = {1, -1, 0, 0};
+	private static int[] aparts = new int[25 * 25];
+	private static int n;
+	private static int apartNum = 0; //아파트 단지 번호의 수
+	private static boolean[][] visited = new boolean[25][25]; //방문여부
+	private static int[][] map = new int[25][25]; //지도
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder stringBuilder = new StringBuilder();
-
 		n = Integer.parseInt(bufferedReader.readLine());
 
-		map = new int[n + 1][n + 1];
-		isVisited = new boolean[n + 1][n + 1];
+		map = new int[n][n];
+		visited = new boolean[n][n];
 
-		for (int i = 1; i <= n; i++) {
+		//전체 사각형 입력 받기
+		for (int i = 0; i < n; i++) {
 			String input = bufferedReader.readLine();
-			for (int j = 1; j <= n; j++) {
-				map[i][j] = Integer.valueOf(input.charAt(j - 1) - '0');
+			for (int j = 0; j < n; j++) {
+				map[i][j] = input.charAt(j) - '0';
 			}
 		}
 
-		for (int i = 1; i <= n; i++) {
-			for (int j = 1; j <= n; j++) {
-				if (map[i][j] == 0) {
-					isVisited[i][j] = true;
-					continue;
-				}
-
-				if (!isVisited[i][j]) {
-					count++;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (map[i][j] == 1 && !visited[i][j]) {
+					apartNum++;
 					bfs(i, j);
-					stringBuilder.append(numberOfMember)
-							.append("\n");
 				}
 			}
 		}
-		System.out.println(count);
-		System.out.println(stringBuilder);
+
+		Arrays.sort(aparts);
+		System.out.println(apartNum);
+
+		for (int i = 0; i < aparts.length; i++) {
+			if (aparts[i] == 0) {
+			} else {
+				System.out.println(aparts[i]);
+			}
+		}
 
 	}
 
-	private static void bfs(int i, int j) {
+	private static void bfs(int x, int y) {
+		//2차원 LinkedList를 가진 큐 선언
+		Queue<int[]> que = new LinkedList<>();
+		que.add(new int[]{x, y});
+		visited[x][y] = true;
+		aparts[apartNum]++;
 
-		numberOfMember = 0;
+		while (!que.isEmpty()) {
 
-		Queue<Integer> queueX = new LinkedList<>();
-		Queue<Integer> queueY = new LinkedList<>();
+			//x, y 값을 받아오기 위한 방법
+			int curX = que.peek()[0];
+			int curY = que.peek()[1];
+			que.poll();
 
-		isVisited[i][j] = true;
-		queueX.add(i);
-		queueY.add(j);
+			for (int i = 0; i < 4; i++) {
+				int nx = curX + dx[i];
+				int ny = curY + dy[i];
 
-		while (!queueX.isEmpty()) {
-
-			numberOfMember++;
-
-			int tempX = queueX.remove();
-			int tempY = queueY.remove();
-
-			int up = tempY - 1;
-			int down = tempY + 1;
-			int left = tempX - 1;
-			int right = tempX + 1;
-
-			if (left > 1) {
-				if (((map[left][tempY] == 1) && (isVisited[left][tempY] == false))) {
-					isVisited[left][tempY] = true;
-					queueX.add(left);
-					queueY.add(tempY);
-					map[left][tempY] = 3;
-				}
-			}
-
-			if (right < n + 1) {
-				if (((map[right][tempY] == 1) && (isVisited[right][tempY] == false))) {
-					isVisited[right][tempY] = true;
-					queueX.add(right);
-					queueY.add(tempY);
-					map[right][tempY] = 3;
-				}
-			}
-
-			if (down < n + 1) {
-				if (((map[tempX][down] == 1) && (isVisited[tempX][down] == false))) {
-					isVisited[tempX][down] = true;
-					queueX.add(tempX);
-					queueY.add(down);
-					map[tempX][down] = 3;
-				}
-			}
-
-			if (up > 1) {
-				if (((map[tempX][up] == 1) && (isVisited[tempX][up] == false))) {
-					isVisited[tempX][up] = true;
-					queueX.add(tempX);
-					queueY.add(up);
-					map[tempX][up] = 3;
+				if (nx >= 0 && ny >= 0 && nx < n && ny < n) {
+					if (map[nx][ny] == 1 && !visited[nx][ny]) {
+						que.add(new int[]{nx, ny});
+						visited[nx][ny] = true;
+						aparts[apartNum]++;
+					}
 				}
 			}
 		}
-
 	}
 }
