@@ -11,7 +11,7 @@ import java.util.*;
  * 			1. 입력
  * 			2. bfs 알고리즘
  * 			3. 예외처리 - 모두 다 익지 못하는 경우 -1 출력 -> 알고리즘을 마치고 토마토가 0일 때
- * 					- 1 입력이 두개 이상이면??
+ * 					- 1 입력이 두개 이상이면?? -> bfs의 큐에 1인 토마토를 모두 넣어줌(동시에 bfs하는 효과)
  * 		 	4. 출력
  */
 public class Problem7576 {
@@ -52,13 +52,7 @@ public class Problem7576 {
 			}
 		}
 
-		while (!position.isEmpty()) {
-			int row = position.get(0)[0];
-			int column = position.get(0)[1];
-			position.remove(0);
-
-			bfs(row, column);
-		}
+		bfs();
 
 		int max = 0;
 
@@ -79,11 +73,17 @@ public class Problem7576 {
 
 	}
 
-	private static void bfs(int row, int column) {
+	private static void bfs() {
 
 		Queue<int[]> queue = new LinkedList<>();
-		queue.add(new int[]{row, column});
-		isVisited[row][column] = true;
+		while (!position.isEmpty()) {
+			int row = position.get(0)[0];
+			int column = position.get(0)[1];
+			position.remove(0);
+
+			queue.add(new int[]{row, column});
+			isVisited[row][column] = true;
+		}
 
 		while (!queue.isEmpty()) {
 			int currentRow = queue.peek()[0];
