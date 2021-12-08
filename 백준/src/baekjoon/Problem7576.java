@@ -17,8 +17,7 @@ import java.util.*;
 public class Problem7576 {
 
 	private static int[][] map;
-	private static boolean[][] isVisited;
-	private static List<int[]> position;
+	private static Queue<int[]> queue;
 	private static int[] dx = {1, -1, 0, 0};
 	private static int[] dy = {0, 0, 1, -1};
 	private static int m;
@@ -32,22 +31,15 @@ public class Problem7576 {
 		n = Integer.parseInt(stringTokenizer.nextToken());
 
 		map = new int[n][m];
-		isVisited = new boolean[n][m];
-		position = new ArrayList<>();
+		queue = new LinkedList<>();
 
 		for (int i = 0; i < n; i++) {
 			stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 			for (int j = 0; j < m; j++) {
 				int num = Integer.parseInt(stringTokenizer.nextToken());
-
 				if (num == 1) {
-					position.add(new int[]{i, j});
+					queue.add(new int[]{i, j});
 				}
-
-				if (num == -1) {
-					isVisited[i][j] = true;
-				}
-
 				map[i][j] = num;
 			}
 		}
@@ -59,7 +51,7 @@ public class Problem7576 {
 		for (int[] i : map) {
 			for (int j : i) {
 				if (j == 0) {
-					System.out.println(0);
+					System.out.println(-1);
 					return;
 				}
 
@@ -75,16 +67,6 @@ public class Problem7576 {
 
 	private static void bfs() {
 
-		Queue<int[]> queue = new LinkedList<>();
-		while (!position.isEmpty()) {
-			int row = position.get(0)[0];
-			int column = position.get(0)[1];
-			position.remove(0);
-
-			queue.add(new int[]{row, column});
-			isVisited[row][column] = true;
-		}
-
 		while (!queue.isEmpty()) {
 			int currentRow = queue.peek()[0];
 			int currentColumn = queue.peek()[1];
@@ -95,10 +77,9 @@ public class Problem7576 {
 				int nextColumn = currentColumn + dx[i];
 
 				if (nextColumn >= 0 && nextColumn < m && nextRow >= 0 && nextRow < n) {
-					if (map[nextRow][nextColumn] == 0 && !isVisited[nextRow][nextColumn]) {
+					if (map[nextRow][nextColumn] == 0) {
 						queue.add(new int[]{nextRow, nextColumn});
 						map[nextRow][nextColumn] = map[currentRow][currentColumn] + 1;
-						isVisited[nextRow][nextColumn] = true;
 					}
 				}
 			}
