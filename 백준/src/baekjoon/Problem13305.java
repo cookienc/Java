@@ -10,46 +10,34 @@ import java.util.StringTokenizer;
  */
 public class Problem13305 {
 
-	private static int[] city;
-	private static int[] distance;
+	private static long[] price;
+	private static long[] distance;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
 		int n = Integer.parseInt(bufferedReader.readLine());
 
-		city = new int[n];
-		distance = new int[n - 1];
+		price = new long[n];
+		distance = new long[n - 1];
 
 		StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 		for (int i = 0; i < n - 1; i++) {
-			distance[i] = Integer.parseInt(stringTokenizer.nextToken());
+			distance[i] = Long.parseLong(stringTokenizer.nextToken());
 		}
 
 		stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 		for (int i = 0; i < n; i++) {
-			city[i] = Integer.parseInt(stringTokenizer.nextToken());
+			price[i] = Long.parseLong(stringTokenizer.nextToken());
 		}
 
-		int total = 0;
-		for (int i = 0; i < n - 1; i++) {
-			if (city[i] > city[i + 1]) {
-				total += city[i] * distance[i];
-				continue;
-			}
+		long total = 0;
+		long minPrice = price[0];
 
-			int tempDistance = distance[i];
-			int count = 1;
-			for (int j = i + 1; j < n - 1; j++) {
-				if (city[i] > city[j]) {
-					i = j;
-					break;
-				}
-				tempDistance += distance[j];
-				count++;
-			}
-			total += city[i] * tempDistance;
-			i += count;
+		for (int i = 0; i < n - 1; i++) {
+
+			Math.min(minPrice, price[i]);
+			total += distance[i] * minPrice;
 		}
 
 		System.out.println(total);
