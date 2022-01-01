@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 /**
  * 출처: https://www.acmicpc.net/problem/13305
+ * 참고: https://st-lab.tistory.com/192?category=882064
  */
 public class Problem13305 {
 
@@ -36,7 +37,7 @@ public class Problem13305 {
 
 		for (int i = 0; i < n - 1; i++) {
 
-			Math.min(minPrice, price[i]);
+			minPrice = Math.min(minPrice, price[i]);
 			total += distance[i] * minPrice;
 		}
 
