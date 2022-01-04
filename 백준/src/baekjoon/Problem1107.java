@@ -12,17 +12,21 @@ import java.util.StringTokenizer;
 public class Problem1107 {
 
 	public static final int FIRST_POSITION = 100;
-	private static boolean[] broken = new boolean[10];
+	private static boolean[] broken;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(bufferedReader.readLine());
 		int m = Integer.parseInt(bufferedReader.readLine());
 
-		StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+		broken = new boolean[10];
+		StringTokenizer stringTokenizer;
 
-		for (int i = 0; i < m; i++) {
-			broken[Integer.parseInt(stringTokenizer.nextToken())] = true;
+		if (m != 0) {
+			stringTokenizer = new StringTokenizer(bufferedReader.readLine());
+			for (int i = 0; i < m; i++) {
+				broken[Integer.parseInt(stringTokenizer.nextToken())] = true;
+			}
 		}
 
 		int click = Math.abs(n - FIRST_POSITION);
