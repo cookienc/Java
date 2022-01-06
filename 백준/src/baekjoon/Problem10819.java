@@ -8,6 +8,7 @@ import java.util.*;
 public class Problem10819 {
 
 	private static int[] array;
+	private static boolean[] isVisited;
 	private static int max = Integer.MIN_VALUE;
 
 
@@ -16,6 +17,9 @@ public class Problem10819 {
 		int n = Integer.parseInt(bufferedReader.readLine());
 
 		array = new int[n];
+		int length = array.length;
+		int[] output = new int[length];
+		isVisited = new boolean[length];
 
 		StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 		for (int i = 0; i < n; i++) {
@@ -24,29 +28,25 @@ public class Problem10819 {
 
 		Arrays.sort(array);
 
-		perm(array, 0, n);
+		perm(output, 0, length, n);
 
 		System.out.println(max);
 
 	}
 
-	private static void perm(int[] a, int depth, int num){
-		if (depth == num) {
-			findMax(a, num);
+	private static void perm(int[] output, int depth, int n, int r){
+		if (depth == r) {
+			findMax(output, r);
 			return;
 		}
-		for (int i = depth; i < num; i++) {
-			swap(a, i, depth);
-			perm(a, depth + 1, num);
-			swap(a, i, depth);
+		for (int i = 0; i < n; i++) {
+			if (isVisited[i] == false) {
+				isVisited[i] = true;
+				output[depth] = array[i];
+				perm(output, depth + 1, n, r);
+				isVisited[i] = false;
+			}
 		}
-	}
-
-
-	private static void swap(int[] array, int index, int n) {
-		int temp = array[index];
-		array[index] = array[n];
-		array[n] = temp;
 	}
 
 	private static void findMax(int[] arr, int n) {
