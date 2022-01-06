@@ -7,53 +7,45 @@ import java.util.StringTokenizer;
 
 /**
  * 출처: https://www.acmicpc.net/problem/15649
+ * 참고: https://st-lab.tistory.com/114#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
  */
 public class Problem15649 {
-	private static StringBuilder stringBuilder;
+	public static int[] array;
+	public static boolean[] isVisited;
+	public static StringBuilder stringBuilder = new StringBuilder();
 
 	public static void main(String[] args) throws IOException {
+
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
 		StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-		stringBuilder = new StringBuilder();
-		int n = Integer.parseInt(stringTokenizer.nextToken());
-		int m = Integer.parseInt(stringTokenizer.nextToken());
 
-		int[] array = new int[n];
-		int[] output = new int[n];
-		boolean[] isVisited = new boolean[n];
+		int N = Integer.parseInt(stringTokenizer.nextToken());
+		int M = Integer.parseInt(stringTokenizer.nextToken());
 
-		for (int i = 1; i <= n; i++) {
-			array[i - 1] = i;
-		}
-
-		permutation(array, output, isVisited, 0, n, m);
+		array = new int[M];
+		isVisited = new boolean[N];
+		dfs(N, M, 0);
 		System.out.println(stringBuilder);
+
 	}
 
-	private static void permutation(int[] array, int[] output, boolean[] isVisited, int depth, int n, int r) {
-		if (depth == r) {
-			print(output);
+	public static void dfs(int N, int M, int depth) {
+		if (depth == M) {
+			for (int val : array) {
+				stringBuilder.append(val).append(' ');
+			}
+			stringBuilder.append('\n');
 			return;
 		}
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < N; i++) {
 			if (!isVisited[i]) {
 				isVisited[i] = true;
-				output[depth] = array[i];
-				permutation(array, output, isVisited, depth + 1, n, r);
+				array[depth] = i + 1;
+				dfs(N, M, depth + 1);
 				isVisited[i] = false;
 			}
 		}
-	}
-
-	private static void print(int[] output) {
-		for (int i : output) {
-			if (i == 0) {
-				continue;
-			}
-			stringBuilder.append(i)
-					.append(" ");
-		}
-		stringBuilder.append("\n");
 	}
 }
