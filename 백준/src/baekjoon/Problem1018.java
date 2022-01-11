@@ -54,7 +54,7 @@ public class Problem1018 {
 		int endColumn = column + 8;
 
 		int bw = 0;
-		int wb = 0;
+
 
 		boolean standard = BLACK;
 
@@ -68,18 +68,7 @@ public class Problem1018 {
 			standard = !standard;
 		}
 
-		standard = WHITE;
 
-		for (int i = row; i < endRow; i++) {
-			for (int j = column; j < endColumn; j++) {
-				if (array[i][j] != standard) {
-					wb++;
-				}
-				standard = !standard;
-			}
-			standard = !standard;
-		}
-
-		return Math.min(bw, wb);
+		return Math.min(bw, 64 - bw);
 	}
 }
