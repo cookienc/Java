@@ -37,11 +37,11 @@ public class Problem2468 {
 			}
 		}
 
-		int height = 1;
+		int height = 0;
 
 		for (int i = height; i < max; i++) {
+			count = 0;
 			isVisited = new boolean[N][N];
-			setVisited(i);
 			getSafePlace(i);
 			result = Math.max(result, count);
 		}
@@ -49,38 +49,26 @@ public class Problem2468 {
 		System.out.println(result);
 	}
 
-	private static void setVisited(int height) {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if (array[i][j] <= height) {
-					isVisited[i][j] = true;
-				}
-			}
-		}
-	}
-
 	private static void getSafePlace(int height) {
 
-		count = 0;
-
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				if (!isVisited[i][j]) {
-					bfs(i, j, height);
-					count++;
+				if (!isVisited[i][j] && array[i][j] > height) {
+					count += bfs(i, j, height);
 				}
 			}
 		}
 	}
 
-	private static void bfs(int i, int j, int height) {
+	private static int bfs(int i, int j, int height) {
 
-		if (isVisited[i][j]) {
-			return;
+		if (array[i][j] <= height) {
+			return 0;
 		}
 
 		Queue<int[]> queue = new LinkedList<>();
 
+		isVisited[i][j] = true;
 		queue.offer(new int[]{i, j});
 
 		while (!queue.isEmpty()) {
@@ -98,11 +86,16 @@ public class Problem2468 {
 					continue;
 				}
 
-				if (array[nextX][nextY] > height && !isVisited[nextX][nextY]) {
+				if (isVisited[nextX][nextY]) {
+					continue;
+				}
+
+				if (array[nextX][nextY] > height) {
+					isVisited[nextX][nextY] = true;
 					queue.offer(new int[]{nextX, nextY});
 				}
 			}
 		}
-
+		return 1;
 	}
 }
