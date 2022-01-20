@@ -8,28 +8,28 @@ import java.io.InputStreamReader;
  * 출처: https://www.acmicpc.net/problem/2748
  */
 public class Problem2748 {
+
+	private static Long[] dp;
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(bufferedReader.readLine());
 
-		long[] dp = new long[n + 1];
+		dp = new Long[n + 1];
 
-		if (n == 0) {
-			System.out.println(0);
-			return;
-		}
-		dp[0] = 0;
+		dp[0] = 0L;
+		dp[1] = 1L;
 
-		if (n == 1) {
-			System.out.println(1);
-			return;
-		}
-		dp[1] = 1;
+		System.out.println(fibonacci(n));
+	}
 
-		for (int i = 2; i <= n; i++) {
-			dp[i] = dp[i - 1] + dp[i - 2];
+	private static Long fibonacci(int n) {
+		if (dp[n] != null) {
+			return dp[n];
 		}
 
-		System.out.println(dp[n]);
+		dp[n] = fibonacci(n - 1) + fibonacci(n - 2);
+
+		return dp[n];
 	}
 }
