@@ -3,15 +3,15 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.util.StringTokenizer;
 
 /**
  * 출처: https://www.acmicpc.net/problem/1010
+ * 참고: https://st-lab.tistory.com/194
  */
 public class Problem1010 {
 
-	private static BigInteger[] dp;
+	private static int[][] dp = new int[30][30];
 
 	public static void main(String[] args) throws IOException {
 
@@ -26,26 +26,28 @@ public class Problem1010 {
 			int N = Integer.parseInt(stringTokenizer.nextToken());
 			int M = Integer.parseInt(stringTokenizer.nextToken());
 
-			dp = new BigInteger[M + 1];
-
-			dp[0] = new BigInteger("1");
-			dp[1] = new BigInteger("1");
-
-			stringBuilder.append(combination(N, M)).append("\n");
+			stringBuilder.append(combination(M, N)).append("\n");
 		}
 
 		System.out.println(stringBuilder);
 	}
 
-	private static BigInteger combination(int n, int m) {
-		return factorial(m).divide(factorial(m - n).multiply(factorial(n)));
-	}
+	private static int combination(int m, int n) {
 
-	private static BigInteger factorial(int num) {
-		if (dp[num] == null) {
-			dp[num] = factorial(num - 1).multiply(new BigInteger(String.valueOf(num)));
+		if (dp[m][n] > 0) {
+			return dp[m][n];
 		}
 
-		return dp[num];
+		if (isExitCondition(m, n)) {
+			return dp[m][n] = 1;
+		}
+
+		dp[m][n] = combination(m - 1, n - 1) + combination(m - 1, n);
+
+		return dp[m][n];
+	}
+
+	private static boolean isExitCondition(int m, int n) {
+		return n == 0 || n == m;
 	}
 }
