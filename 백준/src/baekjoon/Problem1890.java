@@ -5,18 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 출처: https://www.acmicpc.net/problem/1890
+ */
 public class Problem1890 {
 
-	private static int[][] dp;
+	private static long[][] dp;
 	private static int[][] array;
-	private static int count = 0;
 	private static int N;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(bf.readLine());
 
-		dp = new int[N + 1][N + 1];
+		dp = new long[N + 1][N + 1];
 		array = new int[N + 1][N + 1];
 
 		StringTokenizer st;
@@ -27,25 +29,25 @@ public class Problem1890 {
 			}
 		}
 
-		dfs(1, 1);
+		dp[1][1] = 1;
 
-		System.out.println(count);
-	}
+		for (int i = 1; i <= N; i++) {
+			for (int j = 1; j <= N; j++) {
+				if (i == N && j == N) {
+					continue;
+				}
 
-	private static void dfs(int x, int y) {
+				if (i + array[i][j] <= N) {
+					dp[i + array[i][j]][j] += dp[i][j];
+				}
 
-		if (x > N || y > N) {
-			return;
+				if (j + array[i][j] <= N) {
+					dp[i][j + array[i][j]] += dp[i][j];
+				}
+			}
 		}
 
-		if (array[x][y] == 0) {
-			count++;
-			return;
-		}
-
-		int step = array[x][y];
-
-		dfs(x + step, y);
-		dfs(x, y + step);
+		System.out.println(dp[N][N]);
 	}
+
 }
