@@ -10,41 +10,90 @@ import java.util.StringTokenizer;
  */
 public class Problem1074 {
 
-	private static int[][] array;
 	private static int count = 0;
+	private static int answer = 0;
+	private static int size;
+	private static int r;
+	private static int c;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(bf.readLine());
 
 		int N = Integer.parseInt(st.nextToken());
-		int r = Integer.parseInt(st.nextToken());
-		int c = Integer.parseInt(st.nextToken());
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
 
-		int size = (int) Math.pow(2, N);
+		size = (int) Math.pow(2, N);
 
-		array = new int[size][size];
+		split(0, 0);
 
-		split(0, 0, size);
-
-		System.out.println(array[r][c]);
+		System.out.println(answer);
 	}
 
-	private static void split(int x, int y, int size) {
+	private static void split(int x, int y) {
 
 		if (size == 2) {
 			for (int i = x; i < x + 2; i++) {
 				for (int j = y; j < y + 2; j++) {
-					array[i][j] = count++;
+					if (i == r && j == c) {
+						answer = count;
+					}
+					count++;
 				}
 			}
 			return;
 		}
+		/**
+		 * 2^3 = 8 -> 8*8 = 64
+		 * 1 -> 0
+		 * 2 -> 16
+		 * 3 -> 32
+		 * 4 -> 48
+		 */
+		int position = findPosition(r, c);
+		int step = size * size / 4;
 		size /= 2;
-		split(x, y, size);
-		split(x, y + size, size);
-		split(x + size, y, size);
-		split(x + size, y + size, size);
 
+		switch (position) {
+
+			case 1:
+				count += step * 0;
+				break;
+
+			case 2:
+				count += step * 1;
+				c -= size;
+				break;
+
+			case 3:
+				count += step * 2;
+				r -= size;
+				break;
+
+			case 4:
+				count += step * 3;
+				r -= size;
+				c -= size;
+				break;
+		}
+
+		split(x, y);
+	}
+
+	private static int findPosition(int r, int c) {
+		if ((r >= 0 && r < size / 2) && (c >= 0 && c < size / 2)) {
+			return 1;
+		}
+
+		if ((r >= 0 && r < size / 2) && (c >= size / 2 && c < size)) {
+			return 2;
+		}
+
+		if ((r >= size / 2 && r < size) && (c >= 0 && c < size / 2)) {
+			return 3;
+		}
+
+		return 4;
 	}
 }
