@@ -19,16 +19,17 @@ public class Problem15829 {
 
 		array[0] = 1;
 		for (int i = 1; i < L; i++) {
-			array[i] = array[i - 1] * r;
+			array[i] = (array[i - 1] * r) % MOD;
 		}
 
 		String word = bf.readLine();
 		for (int i = 0; i < L; i++) {
 			int hashNum = word.charAt(i) - 'a' + 1;
 			array[i] *= hashNum;
+			array[i] %= MOD;
 		}
 
-		int sum = 0;
+		long sum = 0L;
 		for (long l : array) {
 			sum += l % MOD;
 		}
