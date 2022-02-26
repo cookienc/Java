@@ -37,16 +37,18 @@ public class Problem5525 {
 		for (int i = 0; i < M; i++) {
 			if (words[i] == 'I') {
 
-				for (int j = i + 1; j < M - 1; j++) {
+				int continuity = 0;
+				int j;
+				for (j = i + 1; j < M - 1; j++) {
 
 					if (words[j] == 'O' && words[j + 1] == 'I') {
-						count[j + 1] = count[j - 1] + 1;
+						count[j + 1] = ++continuity;
 						j++;
 						continue;
 					}
-					i = j - 1;
 					break;
 				}
+				i = j - 1;
 			}
 		}
 	}
