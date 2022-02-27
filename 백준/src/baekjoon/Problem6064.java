@@ -26,18 +26,37 @@ public class Problem6064 {
 			int x = Integer.parseInt(st.nextToken());
 			int y = Integer.parseInt(st.nextToken());
 
-			int lcm = M * N / gcd(M, N);
-			int n = 0;
-			int answer = -1;
-			while (n * M < lcm) {
-				if ((n * M + x - y) % N == 0) {
-					answer = n * M + x;
+			if (x == M) {
+				x = 0;
+			}
+
+			boolean hasAnswer = false;
+			int year = 0;
+			int yDot = 0;
+			int count = 0;
+			int max = M * N / gcd(M, N);
+
+			while (year <= max) {
+				year = x + count++ * M;
+				yDot = year % N;
+
+				if (yDot == 0) {
+					yDot = N;
+				}
+
+				if (yDot == y) {
+					hasAnswer = true;
 					break;
 				}
-				n++;
 			}
-			sb.append(answer)
-					.append(NEW_LINE);
+
+			if (hasAnswer) {
+				sb.append(year)
+						.append(NEW_LINE);
+			} else {
+				sb.append(-1)
+						.append(NEW_LINE);
+			}
 		}
 		System.out.println(sb);
 	}
