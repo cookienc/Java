@@ -1,63 +1,91 @@
 package programmers;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class NewIdRecommend {
 	class Solution {
 		public String solution(String new_id) {
+			IdRecommend idRecommend = new IdRecommend(new_id);
 
-			new_id = new_id.toLowerCase().replaceAll("[^0-9a-z\\-\\_\\.]", "");
+			return idRecommend.kakaoId();
+		}
 
-			List<Character> list = new LinkedList<>();
+		private class IdRecommend {
+			private String id;
 
-			for (int i = 0; i < new_id.length(); i++) {
-				list.add(new_id.charAt(i));
+			public IdRecommend(String id) {
+				this.id = id;
 			}
 
-			//3단계
-			for (int i = 0; i < list.size() - 1; i++) {
-				if ((list.get(i) == '.') && (list.get(i + 1) == '.')) {
-					list.remove(i);
-					i--;
-					continue;
+			public String getId() {
+				return this.id;
+			}
+
+			public String kakaoId() {
+				return this.toLowerCase()
+						.removeSpecificWord()
+						.removeDuplicatePeriod()
+						.removeFirstPeriod()
+						.removeLastPeriod()
+						.isItEmpty()
+						.isItInRange()
+						.isLowerThanTwo()
+						.getId();
+			}
+
+			private IdRecommend toLowerCase() {
+				this.id = this.id.toLowerCase();
+				return this;
+			}
+
+			private IdRecommend removeSpecificWord() {
+				this.id = this.id.replaceAll("[^0-9a-z\\-\\_\\.]", "");
+				return this;
+			}
+
+			private IdRecommend removeDuplicatePeriod() {
+				this.id = this.id.replaceAll("[.]{2,}", ".");
+				return this;
+			}
+
+			private IdRecommend removeFirstPeriod() {
+				this.id = this.id.replaceAll("^[.]","");
+				return this;
+			}
+
+			private IdRecommend removeLastPeriod() {
+				this.id = this.id.replaceAll("[.]$", "");
+				return this;
+			}
+
+			private IdRecommend isItEmpty() {
+
+				if (this.id.length() == 0) {
+					this.id = "a";
 				}
+				return this;
 			}
 
-			if (list.get(0) == '.') {
-				list.remove(0);
-			}
-
-			if (list.size() >= 1) {
-				if (list.get(list.size() - 1) == '.') {
-					list.remove(list.size() - 1);
+			private IdRecommend isItInRange() {
+				if (this.id.length() >= 16) {
+					this.id = this.id.substring(0, 15);
+					this.removeLastPeriod();
 				}
+				return this;
 			}
 
-			if (list.isEmpty()) {
-				list.add('a');
-			}
-
-			if (list.size() >= 16) {
-				list = list.subList(0, 15);
-				if (list.get(14) == '.') {
-					list.remove(14);
+			private IdRecommend isLowerThanTwo() {
+				if (this.id.length() == 1) {
+					String tmp = this.id;
+					this.id += tmp + tmp;
+					return this;
 				}
-			}
 
-			if (list.size() <= 2) {
-				char word = list.get(list.size() - 1);
-				while (list.size() < 3) {
-					list.add(word);
+				if (this.id.length() == 2) {
+					String tmp = String.valueOf(this.id.charAt(1));
+					this.id += tmp;
+					return this;
 				}
+				return this;
 			}
-
-			StringBuilder sb = new StringBuilder();
-			for (Character c : list) {
-				sb.append(c);
-			}
-
-			return sb.toString();
 		}
 	}
 }
