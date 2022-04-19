@@ -4,44 +4,54 @@ package programmers;
  * 출처: https://programmers.co.kr/learn/courses/30/lessons/92344?language=java
  */
 public class UndestroyedBuilding {
-	class Solution {
-		public int solution(int[][] board, int[][] skill) {
+	static class Solution {
+		private static int[][] sum;
+		private static int row;
+		private static int col;
 
-			int row = board.length;
-			int col = board[0].length;
+		public static int solution(int[][] board, int[][] skill) {
+			row = board.length;
+			col = board[0].length;
 
-			for (int i = 0; i < skill.length; i++) {
-				int type = skill[i][0];
-				int r1 = skill[i][1];
-				int c1 = skill[i][2];
-				int r2 = skill[i][3];
-				int c2 = skill[i][4];
-				int degree = skill[i][5];
+			sum = new int[row + 1][col + 1];
+			for (int[] s : skill) {
+				int r1 = s[1];
+				int c1 = s[2];
+				int r2 = s[3];
+				int c2 = s[4];
+				int degree = s[5] * (s[0] == 1 ? -1 : 1);
 
-				if (type == 1) {
-					for (int r = r1; r <= r2; r++) {
-						for (int c = c1; c <= c2; c++) {
-							board[r][c] -= degree;
-						}
-					}
-					continue;
-				}
-				for (int r = r1; r <= r2; r++) {
-					for (int c = c1; c <= c2; c++) {
-						board[r][c] += degree;
-					}
-				}
+				sum[r1][c1] += degree;
+				sum[r1][c2 + 1] += (degree * -1);
+				sum[r2 + 1][c1] += (degree * -1);
+				sum[r2 + 1][c2 + 1] += degree;
 			}
+			operate();
+
+
 			int answer = 0;
 			for (int r = 0; r < row; r++) {
 				for (int c = 0; c < col; c++) {
-					if (board[r][c] > 0) {
-						answer++;
-					}
+					if (board[r][c] + sum[r][c] > 0) answer++;
+				}
+			}
+			return answer;
+		}
+
+		// 누적합
+		private static void operate() {
+
+			for (int r = 1; r < row; r++) {
+				for (int c = 0; c < col; c++) {
+					sum[r][c] += sum[r - 1][c];
 				}
 			}
 
-			return answer;
+			for (int c = 1; c < col; c++) {
+				for (int r = 0; r < row; r++) {
+					sum[r][c] += sum[r][c - 1];
+				}
+			}
 		}
 	}
 }
