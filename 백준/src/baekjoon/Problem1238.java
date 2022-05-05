@@ -60,6 +60,10 @@ public class Problem1238 {
 				continue;
 			}
 
+			if (distance[u] < cur.weight) {
+				continue;
+			}
+
 			isVisited[u] = true;
 
 			for (int v = 0; v < N; v++) {
