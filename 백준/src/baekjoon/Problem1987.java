@@ -3,8 +3,6 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
@@ -12,8 +10,8 @@ import java.util.StringTokenizer;
  */
 public class Problem1987 {
 
-	private static Set<Character> set;
-	private static Character[][] map;
+	private static int[][] map;
+	private static int[][] visited;
 	private static int answer = Integer.MIN_VALUE;
 	private static int R;
 	private static int C;
@@ -28,51 +26,29 @@ public class Problem1987 {
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
 
-		map = new Character[R][C];
-		set = new HashSet<>();
+		map = new int[R][C];
+		visited = new int[R][C];
 
 		for (int r = 0; r < R; r++) {
-			String str = br.readLine();
+			char[] chars = br.readLine().toCharArray();
 			for (int c = 0; c < C; c++) {
-				map[r][c] = str.charAt(c);
+				map[r][c] = chars[c] - 'A';
 			}
 		}
-		set.add(map[0][0]);
-		dfs(0, 0, 0);
 
-		System.out.println(answer + 1);
+		dfs(0, 0, 1 << map[0][0], 1);
+
+		System.out.println(answer);
 	}
 
-	private static void dfs(int row, int col, int count) {
+	private static void dfs(int row, int col, int bit, int count) {
 
-		if (canNotMove(row, col)) {
-			answer = Math.max(answer, count);
+		if (visited[row][col] == bit) {
 			return;
 		}
 
-		for (int i = 0; i < 4; i++) {
-			int nr = row + dr[i];
-			int nc = col + dc[i];
-
-			if (outOfBound(nr, nc)) {
-				continue;
-			}
-
-			if (set.contains(map[nr][nc])) {
-				continue;
-			}
-
-			Character element = map[nr][nc];
-			set.add(element);
-			dfs(nr, nc, count + 1);
-			set.remove(element);
-		}
-
-	}
-
-	private static boolean canNotMove(int row, int col) {
-
-		boolean canNotMove = true;
+		visited[row][col] = bit;
+		answer = Math.max(answer, count);
 
 		for (int i = 0; i < 4; i++) {
 			int nr = row + dr[i];
@@ -82,14 +58,12 @@ public class Problem1987 {
 				continue;
 			}
 
-			if (set.contains(map[nr][nc])) {
+			if ((bit & 1 << map[nr][nc]) != 0) {
 				continue;
 			}
 
-			canNotMove = false;
-			break;
+			dfs(nr, nc, bit | 1 << map[nr][nc], count + 1);
 		}
-		return canNotMove;
 	}
 
 	private static boolean outOfBound(int nr, int nc) {
