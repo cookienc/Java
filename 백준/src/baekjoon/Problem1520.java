@@ -40,6 +40,7 @@ public class Problem1520 {
 			}
 		}
 		System.out.println(dfs(0, 0));
+		System.out.println(0);
 	}
 
 	private static int dfs(int r, int c) {
