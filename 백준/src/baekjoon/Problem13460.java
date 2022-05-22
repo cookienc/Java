@@ -3,19 +3,25 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
  * 출처: https://www.acmicpc.net/problem/13460
+ * 참고: https://loosie.tistory.com/312
  */
 public class Problem13460 {
 
 	public static final char HOLE = 'O';
-	public static final boolean BLUE = false;
-	public static final boolean RED = true;
+	public static final char WALL = '#';
 	private static int R;
 	private static int C;
+	private static char[][] map;
+	private static boolean[][][][] checked;
 	private static int min = Integer.MAX_VALUE;
+	private static int[] dr = {1, -1, 0, 0};
+	private static int[] dc = {0, 0, 1, -1};
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,234 +29,99 @@ public class Problem13460 {
 
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
+		map = new char[R][C];
+		checked = new boolean[R][C][R][C];
 
-		char[][] map = new char[R][C];
-		Marble blue = null;
-		Marble red = null;
+		int rR = 0;
+		int rC = 0;
+		int bR = 0;
+		int bC = 0;
+
 		for (int r = 0; r < R; r++) {
-			char[] word = br.readLine().toCharArray();
-			for (int c = 0; c < C; c++) {
-				map[r][c] = word[c];
+			char[] arr = br.readLine().toCharArray();
+			for (int c = 0; c < C ; c++) {
+				map[r][c] = arr[c];
+				if (arr[c] == 'R') {
+					rR = r;
+					rC = c;
+				} else if (arr[c] == 'B') {
+					bR = r;
+					bC = c;
+				}
+			}
+		}
 
-				if (map[r][c] == 'B') {
-					blue = new Marble(r, c, BLUE);
+		bfs(rR, rC, bR, bC, 0);
+		System.out.println(min == Integer.MAX_VALUE ? -1 : min);
+	}
+
+	static void bfs(int rx, int ry, int bx, int by, int cnt) {
+		Queue<int[]> queue = new LinkedList<>();
+		queue.add(new int[]{rx, ry, bx, by, cnt});
+		checked[rx][ry][bx][by] = true;
+
+		while (!queue.isEmpty()) {
+			int[] marble = queue.poll();
+			int count = marble[4];
+
+			if (count >= 10) {
+				return;
+			}
+			for (int i = 0; i < 4; i++) {
+				int nRr = marble[0];
+				int nRc = marble[1];
+				int nBr = marble[2];
+				int nBc = marble[3];
+
+				// 빨간 구슬 이동
+				while (map[nRr + dr[i]][nRc + dc[i]] != WALL) {
+					nRr += dr[i];
+					nRc += dc[i];
+					if (map[nRr][nRc] == HOLE) {
+						break;
+					}
+				}
+
+				// 파란 구슬 이동
+				while (map[nBr + dr[i]][nBc + dc[i]] != WALL) {
+					nBr += dr[i];
+					nBc += dc[i];
+					if (map[nBr][nBc] == HOLE) {
+						break;
+					}
+				}
+
+				// 파란 구슬이 구멍에 들어갔을 때
+				if (map[nBr][nBc] == HOLE) {
 					continue;
 				}
 
-				if (map[r][c] == 'R') {
-					red = new Marble(r, c, RED);
-				}
-			}
-		}
-
-		dfs(map, blue, red, 0);
-
-		if (min == Integer.MAX_VALUE) {
-			System.out.println(-1);
-		} else {
-			System.out.println(min);
-		}
-	}
-
-	private static void dfs(char[][] map, Marble blue, Marble red, int depth) {
-
-		if (!blue.end && red.end) {
-			min = Math.min(min, depth);
-			return;
-		}
-
-		if (depth == 10) {
-			return;
-		}
-
-		for (int i = 0; i < 4; i++) {
-			Marble nb = new Marble(blue);
-			Marble nr = new Marble(red);
-			char[][] m = new char[R][C];
-			for (int r = 0; r < R; r++) {
-				m[r] = map[r].clone();
-			}
-
-			move(nb, nr, i, m);
-
-			if (blue.end) {
-				continue;
-			}
-
-			dfs(m, nb, nr, depth + 1);
-		}
-	}
-
-	private static void move(Marble blue, Marble red, int direction, char[][] map) {
-		// 움직이는 방향에 따라 순서가 다름
-		// 위
-		if (direction == 0 && blue.col == red.col) {
-			if (blue.row < red.row) {
-				blue.move(direction, map);
-				red.move(direction, map);
-			}
-
-			red.move(direction, map);
-			blue.move(direction, map);
-			return;
-		}
-		// 왼쪽
-		if (direction == 1 && blue.row == red.row) {
-			if (blue.col < red.col) {
-				blue.move(direction, map);
-				red.move(direction, map);
-				return;
-			}
-
-			red.move(direction, map);
-			blue.move(direction, map);
-			return;
-		}
-		// 아래
-		if (direction == 2 && blue.col == red.col) {
-			if (blue.row > red.row) {
-				blue.move(direction, map);
-				red.move(direction, map);
-				return;
-			}
-
-			red.move(direction, map);
-			blue.move(direction, map);
-			return;
-		}
-		// 오른쪽
-		if (direction == 3 && blue.row == red.row) {
-			if (blue.col > red.col) {
-				blue.move(direction, map);
-				red.move(direction, map);
-				return;
-			}
-
-			red.move(direction, map);
-			blue.move(direction, map);
-			return;
-		}
-
-		blue.move(direction, map);
-		red.move(direction, map);
-	}
-
-	private static class Marble {
-		public static final char SPACE = '.';
-		int row;
-		int col;
-		boolean end;
-		boolean color;
-
-		public Marble(int r, int c, boolean color) {
-			this.row = r;
-			this.col = c;
-			this.end = false;
-			this.color = color;
-		}
-
-		public Marble(Marble marble) {
-			this.row = marble.row;
-			this.col = marble.col;
-			this.end = marble.end;
-			this.color = marble.color;
-		}
-
-		public void move(int direction, char[][] map) {
-
-			map[row][col] = SPACE;
-
-			switch (direction) {
-				case 0:
-					up(map);
-					break;
-
-				case 1:
-					left(map);
-					break;
-
-				case 2:
-					down(map);
-					break;
-
-				case 3:
-					right(map);
-					break;
-			}
-
-			if (map[row][col] != HOLE) {
-				if (this.color == RED) {
-					map[row][col] = 'R';
-				} else {
-					map[row][col] = 'B';
-				}
-			}
-		}
-
-		private void right(char[][] map) {
-			int nc = col;
-			for (int c = col + 1; c < C; c++) {
-				if (map[row][c] == HOLE) {
-					end = true;
-					nc = c;
-					break;
-				}
-				if (map[row][c] != SPACE) {
-					break;
-				}
-				nc = c;
-			}
-			col = nc;
-		}
-
-		private void down(char[][] map) {
-			int nr = row;
-			for (int r = row + 1; r < R; r++) {
-				if (map[r][col] == HOLE) {
-					end = true;
-					nr = r;
-					break;
+				// 빨간 구슬만 들어갔을 경우
+				if (map[nRr][nRc] == HOLE) {
+					min = Math.min(min, count + 1);
+					return;
 				}
 
-				if (map[r][col] != SPACE) {
-					break;
-				}
-				nr = r;
-			}
-			row = nr;
-		}
+				// 빨간 파랑 서로 같은 위치에 있을 때
+				if (nRr == nBr && nRc == nBc && map[nRr][nRc] != HOLE) {
+					int red_move = Math.abs(nRr - marble[0]) + Math.abs(nRc - marble[1]);
+					int blue_move = Math.abs(nBr - marble[2]) + Math.abs(nBc - marble[3]);
 
-		private void left(char[][] map) {
-			int nc = col;
-			for (int c = col - 1; c >= 0; c--) {
-				if (map[row][c] == HOLE) {
-					end = true;
-					nc = c;
-					break;
-				}
-				if (map[row][c] != SPACE) {
-					break;
-				}
-				nc = c;
-			}
-			col = nc;
-		}
-
-		private void up(char[][] map) {
-			int nr = row;
-			for (int r = row - 1; r >= 0; r--) {
-				if (map[r][col] == HOLE) {
-					end = true;
-					nr = r;
-					break;
+					// 파란 공이 더 빨리 도착한 경우
+					if (red_move > blue_move) {
+						nRr -= dr[i];
+						nRc -= dc[i];
+					} else { // 빨간 공이 더 빨리 도착한 경우
+						nBr -= dr[i];
+						nBc -= dc[i];
+					}
 				}
 
-				if (map[r][col] != SPACE) {
-					break;
+				if (!checked[nRr][nRc][nBr][nBc]) {
+					checked[nRr][nRc][nBr][nBc] = true;
+					queue.add(new int[]{nRr, nRc, nBr, nBc, count + 1});
 				}
-				nr = r;
 			}
-			row = nr;
 		}
 	}
 }
