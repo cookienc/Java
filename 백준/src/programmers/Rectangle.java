@@ -1,5 +1,7 @@
 package programmers;
 
+import java.util.Arrays;
+
 /**
  * 출처: https://programmers.co.kr/learn/courses/30/lessons/86491?language=java
  */
