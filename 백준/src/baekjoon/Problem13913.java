@@ -27,43 +27,43 @@ public class Problem13913 {
 
 		Stack<Integer> stack = new Stack<>();
 		stack.push(K);
-		int index = K;
 
+		int index = K;
 		while (index != N) {
-			stack.push(parent[index]);
+			stack.add(parent[index]);
 			index = parent[index];
 		}
 
-		// 최종 출력
-		sb.append(time[K] - 1 + "\n");
+		System.out.println(time[K]);
 		while (!stack.isEmpty()) {
-			sb.append(stack.pop() + " ");
+			System.out.print(stack.pop() + " ");
 		}
-
-		System.out.println(sb.toString());
 	}
 
-	static void bfs() {
+	private static void bfs() {
 		Queue<Integer> q = new LinkedList<>();
 		q.add(N);
-		time[N] = 1;
 
 		while (!q.isEmpty()) {
-			int now = q.poll();
+			Integer cur = q.poll();
 
-			if (now == K) {
+			if (cur == K) {
 				return;
 			}
 
 			for (int i = 0; i < 3; i++) {
-				int next;
+				int next = -1;
 
-				if (i == 0) {
-					next = now + 1;
-				} else if (i == 1) {
-					next = now - 1;
-				} else {
-					next = now * 2;
+				switch (i) {
+					case 0:
+						next = cur - 1;
+						break;
+					case 1:
+						next = cur + 1;
+						break;
+					case 2:
+						next = 2 * cur;
+						break;
 				}
 
 				if (next < 0 || next > 100000) {
@@ -72,8 +72,8 @@ public class Problem13913 {
 
 				if (time[next] == 0) {
 					q.add(next);
-					time[next] = time[now] + 1;
-					parent[next] = now;
+					time[next] = time[cur] + 1;
+					parent[next] = cur;
 				}
 			}
 		}
