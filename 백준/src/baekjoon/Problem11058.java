@@ -16,19 +16,27 @@ public class Problem11058 {
 		int N = Integer.parseInt(br.readLine());
 
 		dp = new long[101];
-		dp[1] = 1;
-		dp[2] = 2;
-		dp[3] = 3;
-		dp[4] = 4;
-		dp[5] = 5;
-		dp[6] = 6;
 
-		for (int i = 7; i <= 100; i++) {
-			for (int j = 2; j <= 4; j++) {
-				dp[i] = Math.max(dp[i], dp[i - j - 1] * j);
-			}
+		System.out.println(recur(N));
+	}
+
+	private static long recur(int n) {
+		if (n <= 0) {
+			return 0;
 		}
 
-		System.out.println(dp[N]);
+		if (n < 7) {
+			return n;
+		}
+
+		if (dp[n] != 0) {
+			return dp[n];
+		}
+
+		for (int i = 2; i <= 4; i++) {
+			dp[n] = Math.max(dp[n], recur(n - (i + 1)) * i);
+		}
+
+		return dp[n];
 	}
 }
