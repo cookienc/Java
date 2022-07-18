@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  */
 public class Problem12865 {
 
-	private static Integer[][] dp;
+	private static int[][] dp;
 	private static int[] W; // weight
 	private static int[] V; // value
 
@@ -25,31 +25,37 @@ public class Problem12865 {
 		W = new int[N];
 		V = new int[N];
 
-		dp = new Integer[N][K + 1];
-
 		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine(), " ");
+			st = new StringTokenizer(br.readLine());
 			W[i] = Integer.parseInt(st.nextToken());
 			V[i] = Integer.parseInt(st.nextToken());
 		}
 
-		System.out.println(find(N - 1, K));
+		dp = new int[N][K + 1];
 
-	}
+		for (int r = 0; r < N; r++) {
+			for (int weight = 0; weight <= K; weight++) {
 
-	private static int find(int i, int k) {
-		if (i < 0)
-			return 0;
+				if (r == 0) {
+					if (W[r] > weight) {
+						dp[r][weight] = 0;
+					} else {
+						dp[r][weight] = V[r];
+					}
+					continue;
+				}
 
-		if (dp[i][k] == null) {
+				if (W[r] > weight) {
+					dp[r][weight] = dp[r - 1][weight];
+				} else {
+					dp[r][weight] = Math.max(dp[r - 1][weight], V[r]);
+				}
 
-			if (W[i] > k) {
-				dp[i][k] = find(i - 1, k);
-			}
-			else {
-				dp[i][k] = Math.max(find(i - 1, k), find(i - 1, k - W[i]) + V[i]);
+				if (weight - W[r] >= 0) {
+					dp[r][weight] = Math.max(dp[r - 1][weight], dp[r - 1][weight - W[r]] + V[r]);
+				}
 			}
 		}
-		return dp[i][k];
+		System.out.println(dp[N - 1][K]);
 	}
 }
