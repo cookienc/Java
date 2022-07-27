@@ -1,0 +1,7 @@
+
+n	java:S135A"YReduce the total number of break and continue statements in this loop to use at most one.(ƒ·ÞÇ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ì£‹
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚…½õ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ó’‡¥
+X
+java:S1128"=Remove this unused import 'java.util.NoSuchElementException'.(®“ÿéúÿÿÿÿ
