@@ -10,73 +10,93 @@ import java.util.*;
  */
 public class Problem9470 {
 
+	private static int[][] count;
+	private static List<List<Integer>> list;
+	private static int[] vertex;
+	private static int K;
+	private static int M;
+	private static int P;
+	private static int answer;
+
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int T = Integer.parseInt(br.readLine());
 
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
 		while (T-- > 0) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			int K = Integer.parseInt(st.nextToken());
-			int M = Integer.parseInt(st.nextToken());
-			int P = Integer.parseInt(st.nextToken());
+			answer = 0;
+			st = new StringTokenizer(br.readLine());
+			K = Integer.parseInt(st.nextToken());
+			M = Integer.parseInt(st.nextToken());
+			P = Integer.parseInt(st.nextToken());
 
-			List<List<Integer>> info = new ArrayList<>();
-
-			int[][] count = new int[M][M];
-			int[] node = new int[M];
-
-			for (int i = 0; i < M; i++) {
-				info.add(new ArrayList<>());
-			}
-
-			for (int i = 0; i < P; i++) {
-				st = new StringTokenizer(br.readLine(), " ");
-				int from = Integer.parseInt(st.nextToken()) - 1;
-				int to = Integer.parseInt(st.nextToken()) - 1;
-				info.get(from).add(to);
-				node[to]++;
-			}
+			initialize(br);
 
 			Queue<Integer> q = new LinkedList<>();
-
 			for (int i = 0; i < M; i++) {
-				if (node[i] != 0) {
-					continue;
+				if (vertex[i] == 0) {
+					q.add(i);
+					count[i][1] = 1;
 				}
-				q.add(i);
-				count[i][1] = 1;
 			}
 
-			int result = 0;
 			while (!q.isEmpty()) {
-				int cur = q.poll();
-				int curS = findMax(count[cur], M);
-				if (count[cur][curS] >= 2) {
-					curS++;
-					count[cur][curS] = 1;
-				}
-				result = Math.max(curS, result);
+				Integer cur = q.poll();
+				int strahler = getStrahler(count[cur]);
+				answer = Math.max(answer, strahler);
 
-				for (Integer index : info.get(cur)) {
-					count[index][curS]++;
-					node[index]--;
-					if (node[index] == 0) {
-						q.add(index);
+				for (Integer i : list.get(cur)) {
+					vertex[i]--;
+					count[i][strahler]++;
+
+					if (vertex[i] == 0) {
+						q.add(i);
 					}
 				}
 			}
-			System.out.println(K + " " + result);
+
+			sb.append(K).append(" ").append(answer).append("\n");
 		}
+
+		System.out.println(sb);
 	}
 
-	private static int findMax ( int[] arr, int m){
-		int max = 0;
-		for (int i = m - 1; i >= 0; i--) {
-			if (arr[i] > 0) {
-				max = i;
-				break;
+	private static int getStrahler(int[] arr) {
+		int strahler = -1;
+
+		for (int i = arr.length - 1; i >= 0; i--) {
+			if (arr[i] == 0) {
+				continue;
 			}
+			strahler = i;
+			break;
 		}
-		return max;
+
+		if (arr[strahler] >= 2) {
+			strahler++;
+			arr[strahler] = 1;
+		}
+
+		return strahler;
+	}
+
+	private static void initialize(BufferedReader br) throws IOException {
+		list = new ArrayList<>();
+		for (int i = 0; i < M; i++) {
+			list.add(new ArrayList<>());
+		}
+
+		count = new int[M][M];
+		vertex = new int[M];
+
+		for (int i = 0; i < P; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int from = Integer.parseInt(st.nextToken()) - 1;
+			int to = Integer.parseInt(st.nextToken()) - 1;
+			list.get(from).add(to);
+			vertex[to]++;
+		}
 	}
 }
