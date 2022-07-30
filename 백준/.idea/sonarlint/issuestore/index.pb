@@ -25,3 +25,7 @@ M
 src/baekjoon/Problem2616.java,d/7/d7edd98816a901dd9f203bf742ab6db0e6893756
 N
 src/baekjoon/Problem12869.java,8/3/831c406b0d10254599a609bae0ca69a2c0943763
+N
+src/baekjoon/Problem14238.java,6/e/6e06b03e3f624465dc07935e4c6ec676c37ef9f3
+N
+src/baekjoon/Problem16197.java,8/b/8b9da45bccb26a45200f2754c03a8dd328c94d8b
