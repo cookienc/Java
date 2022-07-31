@@ -1,0 +1,14 @@
+
+n	java:S135E"YReduce the total number of break and continue statements in this loop to use at most one.(ß¢Ô’
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÇóëûÿÿÿÿ
+b
+java:S3008"LRename this field "K" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŒŞ¾Ú
+g
+java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áõ¦ıÿÿÿÿ
+g
+java:S3008"LRename this field "P" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¨ó»üÿÿÿÿ
+f
+java:S1450"PRemove the "K" field and declare it as a local variable in the relevant methods.(ŒŞ¾Ú
+r
+java:S1450"URemove the "answer" field and declare it as a local variable in the relevant methods.(’‹¢å8ÀŒÍ»¤0
+S	java:S106?"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ
