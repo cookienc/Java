@@ -1,0 +1,10 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂšŸüÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»»¦üÿÿÿÿ
+k
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(û›şöıÿÿÿÿ
+P
+java:S1854"5Remove this useless assignment to local variable "N".(ÂšŸüÿÿÿÿ
+A
+java:S1481"&Remove this unused "N" local variable.(ÂšŸüÿÿÿÿ
+S	java:S106,"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ
