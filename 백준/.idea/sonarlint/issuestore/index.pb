@@ -39,3 +39,7 @@ M
 src/baekjoon/Problem1475.java,a/c/ac37ad11647c41380e2097bdd07e2123085c85b3
 M
 src/baekjoon/Problem2812.java,f/b/fbbd9afc66e7afc5d8ae495401331b6caf561cc1
+N
+src/baekjoon/Problem14425.java,f/e/fec11e405697b0ec936d803c9cc08a3815e8d421
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
