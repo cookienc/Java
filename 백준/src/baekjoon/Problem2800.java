@@ -3,7 +3,8 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.TreeSet;
 
@@ -12,71 +13,72 @@ import java.util.TreeSet;
  */
 public class Problem2800 {
 
-	private static char[] arr;
-	private static int[] match;
-	private static int N;
+	private static List<Bracket> brackets = new ArrayList<>();
 	private static TreeSet<String> tree;
 	private static boolean[] isVisited;
+	private static int N;
+	private static char[] chars;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String op = br.readLine();
-		arr = op.toCharArray();
-		N = arr.length;
-		match = new int[N];
-		int cnt = 1;
+		chars = br.readLine().toCharArray();
+
+		Stack<Integer> tmp = new Stack<>();
+		N = chars.length;
 		for (int i = 0; i < N; i++) {
-			if (arr[i] == '(') {
-				match[i] = cnt++;
+			if (chars[i] == '(') {
+				tmp.push(i);
+				continue;
 			}
 
-			if (arr[i] == ')') {
-				match[i] = --cnt;
+			if (chars[i] == ')') {
+				brackets.add(new Bracket(tmp.pop(), i));
 			}
 		}
 
-		isVisited = new boolean[N];
 		tree = new TreeSet<>();
+		isVisited = new boolean[N];
+		dfs(0);
 
-		dfs(0, 0, 0, new Stack<>(), "");
-		tree.remove(op);
-		for (String s : tree) {
-			System.out.println(s);
-		}
+		tree.stream().forEach(System.out::println);
 	}
 
-	private static void dfs(int idx, int open, int close, Stack<Integer> info, String str) {
-		if (idx == N) {
-			tree.add(str);
-			return;
-		}
-
-		if (idx > N || open < close) {
-			return;
-		}
-
-		int next = idx + 1;
-		char c = arr[idx];
-
-		if (c == '(') {
-			Stack<Integer> stack = (Stack<Integer>) info.clone();
-			stack.push(match[idx]);
-			dfs(next, open + 1, close, stack, str + "(");
-			dfs(next, open, close, info, str);
-		} else if (c == ')') {
-			if (open > close) {
-				if (info.peek() == match[idx]) {
-					Stack<Integer> stack = (Stack<Integer>) info.clone();
-					stack.pop();
-					dfs(next, open, close + 1, stack, str + ")");
-				} else {
-					dfs(next, open, close, info, str);
+	private static void dfs(int depth) {
+		if (depth == brackets.size()) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < N; i++) {
+				if (isVisited[i]) {
+					continue;
 				}
-			} else {
-				dfs(next, open, close, info, str);
+				sb.append(chars[i]);
 			}
-		} else {
-			dfs(next, open, close, info, str + c);
+
+			if (sb.length() == N) {
+				return;
+			}
+
+			tree.add(sb.toString());
+
+			return;
+		}
+
+		Bracket bracket = brackets.get(depth);
+
+		isVisited[bracket.start] = true;
+		isVisited[bracket.end] = true;
+		dfs(depth + 1);
+		isVisited[bracket.start] = false;
+		isVisited[bracket.end] = false;
+		dfs(depth + 1);
+	}
+
+	private static class Bracket {
+		int start;
+		int end;
+
+		public Bracket(int start, int end) {
+			this.start = start;
+			this.end = end;
 		}
 	}
 }
