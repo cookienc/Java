@@ -3,6 +3,8 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -15,59 +17,45 @@ public class Problem2346 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 
-		int[] arr = new int[N];
-		boolean[] isChecked = new boolean[N];
+		Deque<Node> deque = new ArrayDeque<>();
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+			deque.add(new Node(i + 1, Integer.parseInt(st.nextToken())));
 		}
 
 		StringBuilder sb = new StringBuilder();
-		int idx = 0;
-		int cnt = 1;
-		isChecked[0] = true;
-
-		int val = arr[idx];
 		sb.append(1).append(" ");
+		int move = deque.pollFirst().val;
 
-		while (cnt < N) {
-			boolean back = false;
-			if (val < 0) {
-				back = true;
-			}
-
-			val = Math.abs(val);
-			while (val-- > 0) {
-				if (back) {
-					idx--;
-					if (idx < 0) {
-						idx += N;
-					}
-				} else {
-					idx++;
-					if (idx >= N) {
-						idx %= N;
-					}
+		while (!deque.isEmpty()) {
+			Node cur = null;
+			if (move > 0) {
+				for (int i = 0; i < move - 1; i++) {
+					deque.addLast(deque.pollFirst());
 				}
-				while (isChecked[idx]) {
-					if (back) {
-						idx--;
-						if (idx < 0) {
-							idx += N;
-						}
-					} else {
-						idx++;
-						if (idx >= N) {
-							idx %= N;
-						}
-					}
+				cur = deque.pollFirst();
+			} else {
+				move = Math.abs(move);
+				for (int i = 0; i < move - 1; i++) {
+					deque.addFirst(deque.pollLast());
 				}
+				cur = deque.pollLast();
 			}
-			cnt++;
-			isChecked[idx] = true;
-			val = arr[idx];
-			sb.append(idx + 1).append(" ");
+			sb.append(cur.idx).append(" ");
+			move = cur.val;
 		}
+
 		System.out.println(sb);
 	}
+
+	private static class Node {
+		int idx;
+		int val;
+
+		public Node(int idx, int val) {
+			this.idx = idx;
+			this.val = val;
+		}
+	}
+
 }
