@@ -1,0 +1,15 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ì£‹
+f	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×ïšÄ
+a
+java:S1301'"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
+T
+java:S1854"7Remove this useless assignment to local variable "tos".(Çúö„8À´üê±0
+V
+java:S1854"9Remove this useless assignment to local variable "froms".(ü˜â£8À´üê±0
+G
+java:S1481"*Remove this unused "froms" local variable.(ü˜â£8Â´üê±0
+E
+java:S1481"(Remove this unused "tos" local variable.(Çúö„8Â´üê±0
+7	java:S131'""Add a default case to this switch.(ÜŸ•
+S	java:S1069"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ
