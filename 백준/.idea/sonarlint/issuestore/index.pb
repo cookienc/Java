@@ -73,3 +73,11 @@ M
 src/baekjoon/Problem1343.java,c/6/c6dba31c2d9960264445d676d0abdad93cc17d36
 N
 src/baekjoon/Problem11508.java,1/2/12fb9c6bfb7b519d96944c6e9ae5b72f15589135
+N
+src/baekjoon/Problem20300.java,4/4/44765227302e5bf40232a8a572d219b9aeeec5e1
+N
+src/baekjoon/Problem20365.java,f/0/f0fdd98d5bda1065f97c937b6dbe288592fa2d20
+N
+src/baekjoon/Problem21314.java,9/4/94f03f2925d2abb161c8744debd5802bf63960cf
+N
+src/baekjoon/Problem21758.java,8/b/8bbaf21b611aef5f63e6be038cf08b524da39126
