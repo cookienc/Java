@@ -1,0 +1,7 @@
+
+D
+java:S3740-"/Provide the parametrized type for this generic.(ÆÌ¼T
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ì£‹
+U	java:S106*"9Replace this use of System.out or System.err by a logger.(øÜùê8ì‡Ÿ®³0
+o
+java:S12107"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(‡ÕÔÏ

@@ -81,3 +81,7 @@ N
 src/baekjoon/Problem21314.java,9/4/94f03f2925d2abb161c8744debd5802bf63960cf
 N
 src/baekjoon/Problem21758.java,8/b/8bbaf21b611aef5f63e6be038cf08b524da39126
+N
+src/baekjoon/Problem19598.java,0/3/031e0a733862e0f7e1825339eb46da01c2fade0a
+N
+src/baekjoon/Problem14620.java,1/f/1fb530b09a9711417bf32acba5981576de0935cc
