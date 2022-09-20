@@ -3,6 +3,11 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
@@ -10,8 +15,9 @@ import java.util.StringTokenizer;
  */
 public class Problem1719 {
 
-	private static int[][] arr;
-	private static int[][] route;
+	private static List<List<Node>> nodes;
+	private static int[] route;
+	private static int[] d;
 	private static int n;
 	private static int m;
 	private static int INF = 200 * 1000 + 1;
@@ -22,17 +28,9 @@ public class Problem1719 {
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 
-		arr = new int[n + 1][n + 1];
-		route = new int[n + 1][n + 1];
-
-		for (int r = 1; r < n + 1; r++) {
-			for (int c = 1; c < n + 1; c++) {
-				if (r == c) {
-					arr[r][c] = 0;
-					continue;
-				}
-				arr[r][c] = INF;
-			}
+		nodes = new ArrayList<>();
+		for (int i = 0; i <= n; i++) {
+			nodes.add(new ArrayList<>());
 		}
 
 		for (int i = 0; i < m; i++) {
@@ -41,36 +39,65 @@ public class Problem1719 {
 			int v = Integer.parseInt(st.nextToken());
 			int w = Integer.parseInt(st.nextToken());
 
-			arr[u][v] = Math.min(w, arr[u][v]);
-			arr[v][u] = Math.min(w, arr[v][u]);
-			route[u][v] = v;
-			route[v][u] = u;
-		}
-
-		for (int k = 1; k < n + 1; k++) {
-			for (int r = 1; r < n + 1; r++) {
-				for (int c = 1; c < n + 1; c++) {
-					if (arr[r][k] + arr[k][c] < arr[r][c]) {
-						arr[r][c] = arr[r][k] + arr[k][c];
-						route[r][c] = route[r][k];
-					}
-				}
-			}
+			nodes.get(u).add(new Node(v, w));
+			nodes.get(v).add(new Node(u, w));
 		}
 
 		StringBuilder sb = new StringBuilder();
-		for (int r = 1; r < n + 1; r++) {
-			for (int c = 1; c < n + 1; c++) {
-				int value = route[r][c];
-				if (value == 0) {
-					sb.append("- ");
-					continue;
-				}
-				sb.append(value + " ");
+		for (int i = 1; i <= n; i++) {
+			d = new int[n + 1];
+			route = new int[n + 1];
+			dijkstra(i, sb);
+		}
+		System.out.println(sb);
+	}
+
+	private static void dijkstra(int start, StringBuilder sb) {
+		Arrays.fill(d, INF);
+		Arrays.fill(route, -1);
+		d[start] = 0;
+		PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(n -> n.weight));
+		pq.add(new Node(start, 0));
+
+		while (!pq.isEmpty()) {
+			Node cur = pq.poll();
+			if (d[cur.next] < cur.weight) {
+				continue;
 			}
-			sb.append("\n");
+
+			for (Node next : nodes.get(cur.next)) {
+				if (d[cur.next] + next.weight < d[next.next]) {
+					route[next.next] = cur.next;
+					d[next.next] = d[cur.next] + next.weight;
+					pq.add(new Node(next.next, d[next.next]));
+				}
+			}
 		}
 
-		System.out.println(sb);
+		for (int i = 1; i <= n; i++) {
+			if (i == start) {
+				sb.append("- ");
+				continue;
+			}
+			sb.append(find(i, start) + " ");
+		}
+		sb.append("\n");
+	}
+
+	private static int find(int i, int start) {
+		if (route[i] == start) {
+			return i;
+		}
+		return find(route[i], start);
+	}
+
+	private static class Node {
+		int next;
+		int weight;
+
+		public Node(int next, int weight) {
+			this.next = next;
+			this.weight = weight;
+		}
 	}
 }
