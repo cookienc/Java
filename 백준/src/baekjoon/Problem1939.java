@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 /**
@@ -54,41 +53,41 @@ public class Problem1939 {
 	static void findMaxWeight(int n, int from, int to) {
 
 		int low = 0;
-		int high = max;
-		Queue<Node> q = new LinkedList<>();
+		int high = max + 1;
 		boolean[] checked = new boolean[n + 1];
 
-		while(low <= high) {
+		while(low + 1 < high) {
 			int mid = low + (high - low) / 2;
-			q.add(new Node(from, 0));
 			checked[from] = true;
 
-			if(existPossibleRoute(q, checked, mid, to)) {
+			if(existPossibleRoute(from, to, mid, checked)) {
 				answer = Math.max(answer, mid);
-				low = mid + 1;
+				low = mid;
 			}
 			else {
-				high = mid - 1;
+				high = mid;
 			}
 
-			q.clear();
 			Arrays.fill(checked, false);
 		}
 	}
 
-	static boolean existPossibleRoute(Queue<Node> q, boolean[] checked, int mid, int end) {
-		while(!q.isEmpty()) {
-			Node cur = q.poll();
+	static boolean existPossibleRoute(int u, int v, int mid, boolean[] checked) {
+		PriorityQueue<Node> pq = new PriorityQueue<>();
+		pq.add(new Node(u, 0));
 
-			for(Node v : graph.get(cur.v)) {
-				if(v.weight >= mid) {
-					if(cur.v == end) {
+		while(!pq.isEmpty()) {
+			Node cur = pq.poll();
+
+			for(Node next : graph.get(cur.v)) {
+				if(next.weight >= mid) {
+					if(cur.v == v) {
 						return true;
 					}
 
-					if(!checked[v.v]) {
-						checked[v.v] = true;
-						q.add(v);
+					if(!checked[next.v]) {
+						checked[next.v] = true;
+						pq.add(next);
 					}
 				}
 			}
@@ -96,13 +95,19 @@ public class Problem1939 {
 		return false;
 	}
 
-	private static class Node {
+	private static class Node implements Comparable<Node> {
+
 		int v;
 		int weight;
 
 		Node(int v, int weight) {
 			this.v = v;
 			this.weight = weight;
+		}
+
+		@Override
+		public int compareTo(Node o) {
+			return o.weight - this.weight;
 		}
 	}
 }
