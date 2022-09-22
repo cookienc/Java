@@ -1,0 +1,12 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÇóëûÿÿÿÿ
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(œû¿Ø8¿Ğªµ0
+Q
+java:S1854"6Remove this useless assignment to local variable "sb".(€ê±Õúÿÿÿÿ
+B
+java:S1481"'Remove this unused "sb" local variable.(€ê±Õúÿÿÿÿ
+;
+java:S1905"&Remove this unnecessary cast to "int".(å¼Â{
+N	java:S106+"9Replace this use of System.out or System.err by a logger.(Ğİç¯
+S	java:S106/"9Replace this use of System.out or System.err by a logger.(™áÛøÿÿÿÿ

@@ -1,0 +1,14 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğ¹÷
+k	java:S1175"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½Ä¨¿ÿÿÿÿÿ
+f	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Á¿ş
+f	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º§”À
+a
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ–x
+e
+java:S1450"PRemove the "N" field and declare it as a local variable in the relevant methods.(ÿ–x
+j
+java:S1450"TRemove the "edges" field and declare it as a local variable in the relevant methods.(ÿŠ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(œû¿Ø
+S	java:S106?"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ

@@ -1,0 +1,18 @@
+
+a
+java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ–x
+g
+java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áõ¦ıÿÿÿÿ
+b
+java:S3008"LRename this field "K" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŒŞ¾Ú
+g
+java:S3008"LRename this field "X" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÇÀûÿÿÿÿ
+f
+java:S1450"PRemove the "K" field and declare it as a local variable in the relevant methods.(ŒŞ¾Ú
+k
+java:S1450"PRemove the "M" field and declare it as a local variable in the relevant methods.(Áõ¦ıÿÿÿÿ
+e
+java:S1450"PRemove the "N" field and declare it as a local variable in the relevant methods.(ÿ–x
+k
+java:S1450"PRemove the "X" field and declare it as a local variable in the relevant methods.(úÇÀûÿÿÿÿ
+S	java:S106<"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ
