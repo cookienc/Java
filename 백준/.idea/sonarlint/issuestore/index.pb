@@ -10,8 +10,6 @@ N
 N
 src/baekjoon/Problem11058.java,e/4/e46515325bb2426fa028ad63bdcd9d42ab4a76d5
 N
-src/baekjoon/Problem12865.java,4/e/4ee8f195ef1cee63a130fe701593c35215d32d20
-N
 src/baekjoon/Problem12026.java,2/3/23e86f516694c80ccc8f80d84544769075395e2c
 M
 src/baekjoon/Problem5557.java,f/6/f664338f38dd851e78e71ffc9ebe880355e07772
