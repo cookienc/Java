@@ -125,3 +125,21 @@ M
 src/baekjoon/Problem2224.java,6/0/6092c7902f45f9442c010a81607a1cc71195eff5
 N
 src/baekjoon/Problem18352.java,e/e/eece43795aeb8b15ef2748aa8fbd84060b364887
+N
+src/baekjoon/Problem14938.java,1/e/1e55c3e4b6d4d5f1e3fb062808ecf48134f649b2
+M
+src/baekjoon/Problem1719.java,2/1/21d1a14191c3f678d3aaf8e51cf392bdac85c634
+P
+ src/programmers/Compression.java,8/2/82afdbf15a27416c3c6b42dc8b2cb44cd13078d9
+M
+src/programmers/TaxiFare.java,6/c/6cef09b2b9d45f8952a047dd27bcdd683f4596f5
+T
+$src/programmers/FindPrimeNumber.java,0/f/0f0a758ecbd23d78970ca6a05121e4254a5e8b72
+M
+src/baekjoon/Problem3079.java,c/9/c9585879b6de4c6ee64fb5dae88756c5d773d2d8
+N
+src/baekjoon/Problem20444.java,5/c/5cee928bd5b7c03394e278939fe106e6d47eab81
+M
+src/baekjoon/Problem1477.java,0/d/0d1639d12118bb9e56c8d3ec26399f9258572fec
+M
+src/baekjoon/Problem1939.java,0/b/0bb632cd638ca0a5cd7a5de8d91c68677632bc1f
