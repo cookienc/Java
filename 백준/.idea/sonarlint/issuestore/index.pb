@@ -155,3 +155,7 @@ M
 src/baekjoon/Problem2631.java,d/9/d9667c533f483ae153b0985e09dc34b02f7e70a1
 M
 src/baekjoon/Problem6359.java,7/3/734d2996101a9bea1c647ea0544cfe51eb759370
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+M
+src/baekjoon/Problem2624.java,a/1/a1760c3069d914f6290d35924f9338023ece8d9b
