@@ -165,3 +165,7 @@ M
 src/baekjoon/Problem2667.java,0/9/09c9179896499f0f24aabbe973124c12cda2edc0
 N
 src/baekjoon/Problem10103.java,3/4/34901475766a7e0472d62b7f5e8390a3b3cc049f
+M
+src/baekjoon/Problem2947.java,0/b/0bb000f3bbf0b46dd0ca1264bd5555623cd64f21
+M
+src/baekjoon/Problem1713.java,9/e/9e5db355b449047c7b10f0e288c5bacac54d216a
