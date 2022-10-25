@@ -169,3 +169,9 @@ M
 src/baekjoon/Problem2947.java,0/b/0bb000f3bbf0b46dd0ca1264bd5555623cd64f21
 M
 src/baekjoon/Problem1713.java,9/e/9e5db355b449047c7b10f0e288c5bacac54d216a
+M
+src/baekjoon/Problem4344.java,1/4/148d69b03ef4c40f9f25831aa6fbc47564ce1d72
+w
+G.idea/sonarlint/issuestore/9/e/9e5db355b449047c7b10f0e288c5bacac54d216a,7/3/7310d47bd7ec0ae6ed663296ee8ee679a21edcbc
+w
+G.idea/sonarlint/issuestore/0/b/0bb000f3bbf0b46dd0ca1264bd5555623cd64f21,5/d/5d5d07ef222e792b645957abd7269f3edd7bbca7
