@@ -181,3 +181,9 @@ w
 G.idea/sonarlint/issuestore/5/d/5d5d07ef222e792b645957abd7269f3edd7bbca7,3/2/3291d417e6be69085a41dd59c61d836626fbd474
 w
 G.idea/sonarlint/issuestore/7/3/7310d47bd7ec0ae6ed663296ee8ee679a21edcbc,d/d/dd88c42d4a13224d7b4efae2407c3bcd735696b2
+M
+src/baekjoon/Problem2979.java,4/c/4c89646927e8b477485c850003e1bfd4973ce1a8
+w
+G.idea/sonarlint/issuestore/d/d/dd88c42d4a13224d7b4efae2407c3bcd735696b2,c/a/ca1d434cb9cffae99a8756528ca8bb0428918698
+w
+G.idea/sonarlint/issuestore/3/2/3291d417e6be69085a41dd59c61d836626fbd474,5/6/56053286544c062bc89548a516c03e59c6d00c1e
