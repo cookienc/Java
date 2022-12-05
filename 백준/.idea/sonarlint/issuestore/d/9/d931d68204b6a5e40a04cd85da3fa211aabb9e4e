@@ -1,0 +1,15 @@
+
+a
+java:S3008
+"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(П€Цx
+e
+java:S1450
+"PRemove the "N" field and declare it as a local variable in the relevant methods.(П€Цx
+f
+java:S1450"PRemove the "a" field and declare it as a local variable in the relevant methods.(эЁћЎ
+f
+java:S1450"PRemove the "b" field and declare it as a local variable in the relevant methods.(звшЪ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(О≥рЄы€€€€
+:
+java:S1068
+"%Remove this unused "N" private field.(П€Цx
