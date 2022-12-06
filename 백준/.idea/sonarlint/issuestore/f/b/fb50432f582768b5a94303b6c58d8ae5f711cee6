@@ -1,7 +1,0 @@
-
-n	java:S135'"YReduce the total number of break and continue statements in this loop to use at most one.(é‰»·
-p
-java:S1450"URemove the "answer" field and declare it as a local variable in the relevant methods.(¤—š‚øÿÿÿÿ
-h
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(œû¿Ø
-N	java:S106M"9Replace this use of System.out or System.err by a logger.(°ÄÌÕ

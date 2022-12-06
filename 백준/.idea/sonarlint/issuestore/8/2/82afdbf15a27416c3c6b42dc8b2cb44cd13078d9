@@ -1,5 +1,0 @@
-
-t	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(ÌµĞ·8ÛîÉØµ0
-s	java:S127("XRefactor the code in order to not assign to this loop counter from within the loop body.(¨…ÄK8ÛîÉØµ0
->
-java:S1643"Use a StringBuilder instead.(ƒ½ï°ÿÿÿÿÿ8ŞîÉØµ0

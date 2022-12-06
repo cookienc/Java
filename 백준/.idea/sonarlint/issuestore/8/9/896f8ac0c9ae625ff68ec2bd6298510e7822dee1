@@ -1,9 +1,0 @@
-
-n	java:S1355"YReduce the total number of break and continue statements in this loop to use at most one.(ÀŞù
-a
-java:S3008"LRename this field "R" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µŞ‡e
-g
-java:S3008"LRename this field "C" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë¶ºıûÿÿÿÿ
-N	java:S106!"9Replace this use of System.out or System.err by a logger.(î³ñŒ
-h
-java:S3776$"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Á³“

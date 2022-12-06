@@ -1,24 +1,0 @@
-
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êî¦ıÿÿÿÿ
-k	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»»¦üÿÿÿÿ
-d
-java:S1104"NMake dx a static final constant or non-public and provide accessors if needed.(¶»îê
-d
-java:S1104"NMake dy a static final constant or non-public and provide accessors if needed.(àÖÖ—
->
-java:S1444"(Make this "public static dx" field final(¶»îê
->
-java:S1444"(Make this "public static dy" field final(àÖÖ—
-g
-java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áõ¦ıÿÿÿÿ
-a
-java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ–x
-o
-java:S1450"TRemove the "count" field and declare it as a local variable in the relevant methods.(É°ŞÄøÿÿÿÿ
-3
-java:S2386"Make this member "protected".(¶»îê
-3
-java:S2386"Make this member "protected".(àÖÖ—
-h
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(œû¿Ø
-S	java:S106A"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ

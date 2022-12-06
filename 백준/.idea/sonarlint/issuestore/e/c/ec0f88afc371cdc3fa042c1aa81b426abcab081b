@@ -1,8 +1,0 @@
-
-a
-java:S3008"LRename this field "N" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ–x
-g
-java:S3008"LRename this field "M" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Αυ¦ύÿÿÿÿ
-k
-java:S1450"PRemove the "M" field and declare it as a local variable in the relevant methods.(Αυ¦ύÿÿÿÿ
-N	java:S106:"9Replace this use of System.out or System.err by a logger.(‚¨Φ§

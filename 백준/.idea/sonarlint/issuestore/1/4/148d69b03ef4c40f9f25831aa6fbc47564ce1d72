@@ -1,8 +1,0 @@
-
-u	java:S135 "YReduce the total number of break and continue statements in this loop to use at most one.(Á˜ Š8³±Îş¿0
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÇóëûÿÿÿÿ8µ±Îş¿0
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂšŸüÿÿÿÿ8µ±Îş¿0
-d
-java:S2184"BCast one of the operands of this division operation to a "double".(şŒº–şÿÿÿÿ8¹±Îş¿0
-Z	java:S106("9Replace this use of System.out or System.err by a logger.(üı–÷ûÿÿÿÿ8ŞµÎş¿0
-T	java:S106)"9Replace this use of System.out or System.err by a logger.(ûÑì*8àµÎş¿0

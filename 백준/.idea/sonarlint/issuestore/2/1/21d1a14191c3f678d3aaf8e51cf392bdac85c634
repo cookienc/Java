@@ -1,8 +1,0 @@
-
-d
-java:S3008"NRename this field "INF" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÈıª
-k
-java:S1450"PRemove the "m" field and declare it as a local variable in the relevant methods.(ìµ›±ûÿÿÿÿ
-Z	java:S1064"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ8£¾çĞµ0
-P
-java:S1117;"5Rename "n" which hides the field declared at line 21.(‡å·…úÿÿÿÿ

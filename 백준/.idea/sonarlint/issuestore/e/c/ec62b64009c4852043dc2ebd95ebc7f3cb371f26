@@ -1,8 +1,0 @@
-
-s	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(£º¾âüÿÿÿÿ
-f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»ì£‹
-h
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(œû¿Ø
-S	java:S106F"9Replace this use of System.out or System.err by a logger.(­ËÖşÿÿÿÿ
-I
-java:S1128",Remove this unused import 'java.util.Queue'.(Äá™ô8›íÖ²0
