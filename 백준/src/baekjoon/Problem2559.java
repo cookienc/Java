@@ -12,18 +12,17 @@ public class Problem2559 {
         final int N = Integer.parseInt(st.nextToken());
         final int K = Integer.parseInt(st.nextToken());
 
-        int[] temperature = new int[N];
+        int[] sum = new int[N + 1];
         st = new StringTokenizer(br.readLine());
-        temperature[0] = Integer.parseInt(st.nextToken());
-        for (int i = 1; i < temperature.length; i++) {
+        for (int i = 1; i <= N; i++) {
             final int cur = Integer.parseInt(st.nextToken());
-            temperature[i] = temperature[i - 1] + cur;
+            sum[i] = sum[i - 1] + cur;
         }
 
-        int max = Integer.MIN_VALUE;
-        for (int i = K; i < temperature.length; i++) {
-            final int value = temperature[i] - temperature[i - K];
-            max = Math.max(value, max);
+        int max = -10000001;
+        for (int i = K; i <= N; i++) {
+            int tmp = sum[i] - sum[i - K];
+            max = Math.max(max, tmp);
         }
         System.out.println(max);
     }
