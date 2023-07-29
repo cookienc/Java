@@ -5,162 +5,153 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 /**
  * 출처: https://www.acmicpc.net/problem/14500
  */
 public class Problem14500 {
 
-	private static int[][] map;
-	public static final boolean F = false;
-	public static final boolean T = true;
-	private static int answer = Integer.MIN_VALUE;
-	private static int count = 0;
-	private static boolean[][][] tetromino = {
-		{
-				{T, F, F, F},
-				{T, F, F, F},
-				{T, F, F, F},
-				{T, F, F, F}
-		}, {
-				{T, T, T, T},
-				{F, F, F, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, F, F},
-				{T, T, F, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, F, F},
-				{F, T, T, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{F, T, F, F},
-				{T, T, F, F},
-				{T, F, F, F},
-				{F, F, F, F}
-		}, {
-				{F, T, T, F},
-				{T, T, F, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, F, F, F},
-				{T, T, F, F},
-				{F, T, F, F},
-				{F, F, F, F}
-		}, {
-				{T, F, F, F},
-				{T, F, F, F},
-				{T, T, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, T, F},
-				{T, F, F, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, F, F},
-				{F, T, F, F},
-				{F, T, F, F},
-				{F, F, F, F}
-		}, {
-				{F, F, T, F},
-				{T, T, T, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{F, T, F, F},
-				{F, T, F, F},
-				{T, T, F, F},
-				{F, F, F, F}
-		}, {
-				{T, F, F, F},
-				{T, T, T, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, F, F},
-				{T, F, F, F},
-				{T, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, T, F},
-				{F, F, T, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{T, T, T, F},
-				{F, T, F, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{F, T, F, F},
-				{T, T, T, F},
-				{F, F, F, F},
-				{F, F, F, F}
-		}, {
-				{F, T, F, F},
-				{T, T, F, F},
-				{F, T, F, F},
-				{F, F, F, F}
-		}, {
-				{T, F, F, F},
-				{T, T, F, F},
-				{T, F, F, F},
-				{F, F, F, F}
-		}
-	};
+    private static int[][] map;
+    private static Boolean[][][] tetromino = {
+            {
+                    {TRUE, FALSE, FALSE, FALSE},
+                    {TRUE, FALSE, FALSE, FALSE},
+                    {TRUE, FALSE, FALSE, FALSE},
+                    {TRUE, FALSE, FALSE, FALSE}
+            }, {
+            {TRUE, TRUE, TRUE, TRUE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, TRUE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, TRUE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, TRUE, TRUE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, TRUE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, FALSE, TRUE, FALSE},
+            {TRUE, TRUE, TRUE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, TRUE, TRUE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, FALSE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, TRUE, FALSE},
+            {FALSE, FALSE, TRUE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, TRUE, TRUE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, TRUE, FALSE, FALSE},
+            {TRUE, TRUE, TRUE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {FALSE, TRUE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {FALSE, TRUE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }, {
+            {TRUE, FALSE, FALSE, FALSE},
+            {TRUE, TRUE, FALSE, FALSE},
+            {TRUE, FALSE, FALSE, FALSE},
+            {FALSE, FALSE, FALSE, FALSE}
+    }
+    };
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(bf.readLine());
+    public static void main(String[] args) throws IOException {
+        final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
+        final int R = Integer.parseInt(st.nextToken());
+        final int C = Integer.parseInt(st.nextToken());
 
-		map = new int[N + 3][M + 3];
+        final int[][] map = new int[R][C];
+        for (int r = 0; r < R; r++) {
+            st = new StringTokenizer(br.readLine());
+            for (int c = 0; c < C; c++) {
+                map[r][c] = Integer.parseInt(st.nextToken());
+            }
+        }
 
-		initializeMap(bf, N, M);
+        int max = 0;
+        for (int i = 0; i < tetromino.length; i++) {
 
-		for (int k = 0; k < 19; k++) {
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < M; j++) {
-					for (int n = 0; n < 4; n++) {
-						for (int m = 0; m < 4; m++) {
-							if (tetromino[k][n][m]) {
-								count += map[n + i][m + j];
+            final Boolean[][] cur = tetromino[i];
+            for (int r = 0; r < R; r++) {
+                for (int c = 0; c < C; c++) {
+
+					int sum = 0;
+					for (int tr = 0; tr < 4; tr++) {
+						for (int tc = 0; tc < 4; tc++) {
+							final int nr = r + tr;
+							final int nc = c + tc;
+
+							if (nr >= R || nc >= C || !cur[tr][tc]) {
+								continue;
 							}
+							sum += map[nr][nc];
 						}
 					}
-					answer = Math.max(answer, count);
-					count = 0;
-				}
-			}
-		}
-		System.out.println(answer);
-	}
 
-	private static void initializeMap(BufferedReader bf, int N, int M) throws IOException {
-		StringTokenizer st;
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(bf.readLine());
-			for (int j = 0; j < M; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-			}
-		}
-
-		for (int i = N; i < N + 3; i++) {
-			for (int j = 0; j < M + 3; j++) {
-				map[i][j] = Integer.MIN_VALUE;
-			}
-		}
-		for (int i = 0; i < N + 3; i++) {
-			for (int j = M; j < M + 3; j++) {
-				map[i][j] = Integer.MIN_VALUE;
-			}
-		}
-	}
+					max = Math.max(max, sum);
+                }
+            }
+        }
+		System.out.println(max);
+    }
 }
