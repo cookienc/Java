@@ -9,33 +9,34 @@ import java.io.InputStreamReader;
  */
 public class Problem2775 {
 
-	private static final StringBuilder sb = new StringBuilder();
-	public static final String NEW_LINE = "\n";
+    public static void main(String[] args) throws IOException {
+        final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        final StringBuilder sb = new StringBuilder();
+        while (t-- > 0) {
+            final int C = Integer.parseInt(br.readLine());
+            final int R = Integer.parseInt(br.readLine());
 
-		int[][] apartment = new int[15][15];
-		for (int i = 1; i < 15; i++) {
-			apartment[0][i] = i;
-		}
+            int[][] apart = new int[C + 1][R + 1];
+            for (int c = 0; c <= C; c++) {
+                for (int r = 1; r <= R; r++) {
+                    if (c == 0) {
+                        apart[c][r] = r;
+                        continue;
+                    }
 
-		for (int i = 1; i < 15; i++) {
-			for (int j = 1; j < 15; j++) {
-				for (int k = 1; k <= j; k++) {
-					apartment[i][j] += apartment[i - 1][k];
-				}
-			}
-		}
+                    if (r == 1) {
+                        apart[c][r] = 1;
+                        continue;
+                    }
 
-		int T = Integer.parseInt(bf.readLine());
+                    apart[c][r] = apart[c][r - 1] + apart[c - 1][r];
+                }
+            }
 
-		for (int i = 0; i < T; i++) {
-			int k = Integer.parseInt(bf.readLine());
-			int n = Integer.parseInt(bf.readLine());
-			sb.append(apartment[k][n])
-					.append(NEW_LINE);
-		}
-		System.out.println(sb);
-	}
+            sb.append(apart[C][R]).append("\n");
+        }
+        System.out.println(sb);
+    }
 }
