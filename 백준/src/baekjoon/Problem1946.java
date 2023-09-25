@@ -11,60 +11,39 @@ import java.util.StringTokenizer;
  */
 public class Problem1946 {
 
-	private static final StringBuilder sb = new StringBuilder();
+    public static void main(String[] args) throws IOException {
+        final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
+        while (T-- > 0) {
+            final int N = Integer.parseInt(br.readLine());
+            int[][] result = new int[N][2];
+            for (int i = 0; i < N; i++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                final int first = Integer.parseInt(st.nextToken());
+                final int second = Integer.parseInt(st.nextToken());
+                result[i][0] = first;
+                result[i][1] = second;
+            }
 
-		while (T-- > 0) {
-			int N = Integer.parseInt(br.readLine());
+            Arrays.sort(result, (r1, r2) -> {
+                if (r1[0] == r2[0]) {
+                    return r1[1] - r2[1];
+                }
+                return r1[0] - r2[0];
+            });
 
-			Score[] score = new Score[N];
-			boolean[] checked = new boolean[N];
-			StringTokenizer st;
-			for (int i = 0; i < N; i++) {
-				st = new StringTokenizer(br.readLine());
-				score[i] = new Score(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-			}
+            int highest = result[0][1];
+            int cnt = 1;
+            for (int i = 1; i < N; i++) {
+                if (result[i][1] < highest) {
+                    cnt++;
+                    highest = result[i][1];
+                }
+            }
+            System.out.println(cnt);
+        }
 
-			Arrays.sort(score, (s1, s2) -> s1.first - s2.first);
-
-			Score flag = score[0];
-			checked[0] = true;
-			for (int i = 1; i < N; i++) {
-
-				if (checked[i]) {
-					break;
-				}
-				Score compare = score[i];
-
-				if (flag.second > compare.second) {
-					checked[i] = true;
-					flag = score[i];
-				}
-			}
-
-			int count = 0;
-			for (boolean b : checked) {
-				if (b) {
-					count++;
-				}
-			}
-			sb.append(count).append("\n");
-		}
-		System.out.println(sb);
-	}
-
-	private static class Score {
-		int first;
-		int second;
-
-		public Score(int first, int second) {
-			this.first = first;
-			this.second = second;
-		}
-	}
-
+    }
 }
 
