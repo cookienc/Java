@@ -10,41 +10,52 @@ import java.util.StringTokenizer;
  */
 public class Problem7568 {
 
-	private static int[][] array;
-	private static int[] rank;
+    public static void main(String[] args) throws IOException {
+        final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        Person[] people = new Person[N];
 
-	public static void main(String[] args) throws IOException {
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < N; i++) {
+            final StringTokenizer st = new StringTokenizer(br.readLine());
+            final int w = Integer.parseInt(st.nextToken());
+            final int h = Integer.parseInt(st.nextToken());
 
-		array = new int[N][2];
-		rank = new int[N];
+            people[i] = new Person(1, w, h);
+        }
 
-		StringTokenizer stringTokenizer;
-		for (int i = 0; i < N; i++) {
-			stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-			array[i][0] = Integer.parseInt(stringTokenizer.nextToken());
-			array[i][1] = Integer.parseInt(stringTokenizer.nextToken());
-		}
+        for (int i = 0; i < N; i++) {
+            final Person target = people[i];
+            int grade = 1;
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    continue;
+                }
 
-		for (int i = 0; i < N; i++) {
-			int count = 1;
-			for (int j = 0; j < N; j++) {
-				if (i == j) {
-					continue;
-				}
+                final Person source = people[j];
+                if (target.height < source.height && target.weight < source.weight) {
+                    grade++;
+                }
+            }
+            target.grade = grade;
+        }
 
-				if ((array[i][0] < array[j][0]) && (array[i][1] < array[j][1])) {
-					count++;
-				}
-			}
-			rank[i] = count;
-		}
+        final StringBuilder sb = new StringBuilder();
+        for (final Person person : people) {
+            sb.append(person.grade).append(" ");
+        }
+        System.out.println(sb);
+    }
 
-		for (int i : rank) {
-			System.out.print(i + " ");
-		}
+    private static class Person {
 
+        int grade;
+        int weight;
+        int height;
 
-	}
+        public Person(final int grade, final int weight, final int height) {
+            this.grade = grade;
+            this.weight = weight;
+            this.height = height;
+        }
+    }
 }
