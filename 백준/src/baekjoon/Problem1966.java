@@ -11,48 +11,68 @@ import java.util.StringTokenizer;
  * 출처: https://www.acmicpc.net/problem/1966
  */
 public class Problem1966 {
-
-	private static final StringBuilder sb = new StringBuilder();
-	public static final String NEW_LINE = "\n";
-
 	public static void main(String[] args) throws IOException {
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(bf.readLine());
+		final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
 
-		Queue<int[]> queue = new LinkedList<>(); //int[] -> {순서, 중요도}
+		final StringBuilder answer = new StringBuilder();
+		while (T-- > 0) {
+			int cnt = 1;
 
-		StringTokenizer st;
-		for (int i = 0; i < t; i++) {
-			st = new StringTokenizer(bf.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			final int N = Integer.parseInt(st.nextToken());
+			final int targetName = Integer.parseInt(st.nextToken());
 
-			int N = Integer.parseInt(st.nextToken());
-			int M = Integer.parseInt(st.nextToken());
-
-			queue.clear();
-			st = new StringTokenizer(bf.readLine());
-			for (int j = 0; j < N; j++) {
-				queue.offer(new int[]{j, Integer.parseInt(st.nextToken())});
+			final Queue<Document> q = new LinkedList<>();
+			int[] primarities = new int[10];
+			st = new StringTokenizer(br.readLine());
+			for (int i = 0; i < N; i++) {
+				final int primary = Integer.parseInt(st.nextToken());
+				primarities[primary]++;
+				q.add(new Document(primary, i));
 			}
 
-			int count = 0;
-			while (true) {
-				int[] tmp = queue.poll();
-
-				if (queue.stream()
-						.anyMatch(array -> array[1] > tmp[1])) {
-					queue.offer(tmp);
+			while (!q.isEmpty()) {
+				final Document cur = q.poll();
+				final int maxPrimary = findMaxPrimary(primarities);
+				if (cur.primary < maxPrimary) {
+					q.offer(cur);
 					continue;
 				}
-				count++;
 
-				if (tmp[0] == M) {
-					break;
+				if (cur.primary == maxPrimary) {
+					primarities[maxPrimary]--;
+
+					if (cur.name == targetName) {
+						answer.append(cnt).append(System.lineSeparator());
+						break;
+					}
+
+					cnt++;
 				}
 			}
-			sb.append(count)
-					.append(NEW_LINE);
 		}
 
-		System.out.println(sb);
+		System.out.println(answer);
+	}
+
+	private static int findMaxPrimary(int[] primarites) {
+		for (int i = primarites.length - 1; i >= 0; i--) {
+			if (primarites[i] != 0) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private static class Document {
+
+		int primary;
+		int name;
+
+		public Document(final int primary, final int name) {
+			this.primary = primary;
+			this.name = name;
+		}
 	}
 }
