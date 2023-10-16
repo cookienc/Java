@@ -11,21 +11,30 @@ public class Problem25631 {
     public static void main(String[] args) throws IOException {
         final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         final int N = Integer.parseInt(br.readLine());
-        int[] doll = new int[N];
+        int[] dolls = new int[N];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            doll[i] = Integer.parseInt(st.nextToken());
+            dolls[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(doll);
+        Arrays.sort(dolls);
         int[] answer = new int[N];
         boolean[] isSaved = new boolean[N];
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (!isSaved[i] && (answer[j] == 0 || answer[j] < doll[i])) {
-                    answer[j] = doll[i];
-                    isSaved[i] = true;
+            if (isSaved[i]) {
+                continue;
+            }
+            answer[i] = dolls[i];
+            isSaved[i] = true;
+            for (int j = i + 1; j < N; j++) {
+                if (isSaved[j]) {
+                    continue;
+                }
+
+                if (answer[i] < dolls[j]) {
+                    answer[i] = dolls[j];
+                    isSaved[j] = true;
                 }
             }
         }
@@ -33,7 +42,7 @@ public class Problem25631 {
         int cnt = 0;
         for (int i : answer) {
             if (i == 0) {
-                break;
+                continue;
             }
             cnt++;
         }
