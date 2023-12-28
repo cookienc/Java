@@ -1,129 +1,93 @@
 import sys
 from copy import deepcopy
-from itertools import product
 
 input = sys.stdin.readline
+
+watches = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+
+
+def countCannotWatch(directions):
+    global area, cctvs
+    copy_area = deepcopy(area)
+
+    for i in range(len(directions)):
+        cctv = cctvs[i]
+        r = cctv[0]
+        c = cctv[1]
+        type = cctv[2]
+        direction = directions[i]
+
+        if type == 1:
+            watch(r, c, copy_area, direction)
+            continue
+        if type == 2:
+            watch(r, c, copy_area, direction)
+            watch(r, c, copy_area, (direction + 2) % 4)
+            continue
+        if type == 3:
+            watch(r, c, copy_area, direction)
+            watch(r, c, copy_area, (direction + 1) % 4)
+            continue
+        if type == 4:
+            watch(r, c, copy_area, direction)
+            watch(r, c, copy_area, (direction + 1) % 4)
+            watch(r, c, copy_area, (direction + 2) % 4)
+            continue
+        if type == 5:
+            watch(r, c, copy_area, direction)
+            watch(r, c, copy_area, (direction + 1) % 4)
+            watch(r, c, copy_area, (direction + 2) % 4)
+            watch(r, c, copy_area, (direction + 3) % 4)
+            continue
+
+    count = 0
+    for i in range(R):
+        for j in range(C):
+            if copy_area[i][j] == 0:
+                count += 1
+
+    return count
+
+
+def watch(sr, sc, area, direction):
+    global R, C, watches
+    nr = sr
+    nc = sc
+    while True:
+        nr += watches[direction][0]
+        nc += watches[direction][1]
+
+        if nr < 0 or nc < 0 or nr >= R or nc >= C:
+            break
+
+        if area[nr][nc] == 6:
+            break
+
+        if area[nr][nc] == 0:
+            area[nr][nc] = '#'
+
 
 R, C = map(int, input().split())
 area = [list(map(int, input().split())) for _ in range(R)]
 cctvs = []
-max = 0
+answer = 0
 for r in range(R):
     for c in range(C):
         if 1 <= area[r][c] <= 5:
             cctvs.append((r, c, area[r][c]))
         if area[r][c] == 0:
-            max += 1
+            answer += 1
 
 cctv_size = len(cctvs)
-directions = product([1, 2, 3, 4], repeat=cctv_size)
-answer = max
+d = 4 ** cctv_size
 
+for i in range(d):
+    tmp = i
+    directions = []
+    for j in range(cctv_size):
+        directions.append(tmp % 4)
+        tmp //= 4
 
-def watch_right(sr, sc):
-    global tmp, C
-    for c in range(sc + 1, C):
-        if copy_area[sr][c] == 6:
-            break
-        if copy_area[sr][c] == 0:
-            copy_area[sr][c] = '#'
-            tmp = tmp - 1
+    answer = min(countCannotWatch(directions), answer)
 
-
-def watch_down(sr, sc):
-    global tmp, R
-    for r in range(sr + 1, R):
-        if copy_area[r][sc] == 6:
-            break
-        if copy_area[r][sc] == 0:
-            copy_area[r][sc] = '#'
-            tmp = tmp - 1
-
-
-def watch_left(sr, sc):
-    global tmp
-    for c in range(sc - 1, -1, -1):
-        if copy_area[sr][c] == 6:
-            break
-        if copy_area[sr][c] == 0:
-            copy_area[sr][c] = '#'
-            tmp = tmp - 1
-
-
-def watch_up(sr, sc):
-    global tmp
-    for r in range(sr - 1, -1, -1):
-        if copy_area[r][sc] == 6:
-            break
-        if copy_area[r][sc] == 0:
-            copy_area[r][sc] = '#'
-            tmp = tmp - 1
-
-
-for direction in directions:
-    copy_area = deepcopy(area)
-    tmp = max
-    for i in range(cctv_size):
-        cctv = cctvs[i]
-        sr = cctv[0]
-        sc = cctv[1]
-        type = cctv[2]
-        cur_d = direction[i]
-
-        if type == 1:
-            # 위
-            if cur_d == 1:
-                watch_up(sr, sc)
-            # 왼
-            if cur_d == 2:
-                watch_left(sr, sc)
-            # 아래
-            if cur_d == 3:
-                watch_down(sr, sc)
-            # 오
-            if cur_d == 4:
-                watch_right(sr, sc)
-        if type == 2:
-            if cur_d % 2 == 0:
-                watch_up(sr, sc)
-                watch_down(sr, sc)
-            else:
-                watch_left(sr, sc)
-                watch_right(sr, sc)
-        if type == 3:
-            if cur_d == 1:
-                watch_up(sr, sc)
-                watch_right(sr, sc)
-            if cur_d == 2:
-                watch_up(sr, sc)
-                watch_left(sr, sc)
-            if cur_d == 3:
-                watch_left(sr, sc)
-                watch_down(sr, sc)
-            if cur_d == 4:
-                watch_down(sr, sc)
-                watch_right(sr, sc)
-        if type == 4:
-            if cur_d == 1:
-                watch_right(sr, sc)
-                watch_up(sr, sc)
-                watch_left(sr, sc)
-            if cur_d == 2:
-                watch_up(sr, sc)
-                watch_left(sr, sc)
-                watch_down(sr, sc)
-            if cur_d == 3:
-                watch_left(sr, sc)
-                watch_down(sr, sc)
-                watch_right(sr, sc)
-            if cur_d == 4:
-                watch_down(sr, sc)
-                watch_right(sr, sc)
-                watch_up(sr, sc)
-        if type == 5:
-            watch_left(sr, sc)
-            watch_down(sr, sc)
-            watch_right(sr, sc)
-            watch_up(sr, sc)
-    answer = min(answer, tmp)
 print(answer)
