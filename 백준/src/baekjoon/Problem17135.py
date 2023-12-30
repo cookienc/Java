@@ -9,39 +9,24 @@
 
 import sys
 from collections import deque
+from itertools import combinations
 
 input = sys.stdin.readline
 moves = [(0, -1), (-1, 0), (0, 1)]
 
 
-def combination(depth, visited):
-    global R, C
-
-    if depth == 3:
-        count(visited)
-        return
-
-    for i in range(C):
-        if visited & (1 << i) != 0:
-            continue
-        combination(depth + 1, visited | (1 << i))
-
-
-def count(visited):
+def count(position):
     global R, C, D, area, answer, moves
     copy_area = [row[:] for row in area]
-    people = []
-    for i in range(C):
-        if (visited & (1 << i)) != 0:
-            people.append(i)
-
+    origin = 0
+    for i in position:
+        origin |= (1 << i)
     count = 0
-    origin = visited
     for RR in range(R - 1, -1, - 1):
         q = deque()
         visited = origin
         enemies = set()
-        for pc in people:
+        for pc in position:
             q.append((RR + 1, pc, 0, pc))
         checked = [[[[False] for _ in range(C)] for _ in range(R)] for _ in range(C)]
 
@@ -82,5 +67,6 @@ R, C, D = map(int, input().split())
 area = [list(map(int, input().split())) for _ in range(R)]
 
 answer = 0
-combination(0, 0)
+for c in combinations(range(C), 3):
+    count(c)
 print(answer)
