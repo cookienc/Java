@@ -1,30 +1,29 @@
 import sys
-from collections import deque
 
 input = sys.stdin.readline
 N = int(input())
 towers = list(map(int, input().split()))
 
-answer = [0]
+stack = []
+answers = []
 
-stack = deque()
-stack.append((1, towers[0]))
-for i in range(1, N):
-    cur = towers[i]
+for i in range(N):
+    height = towers[i]
+    if not stack:
+        stack.append((i + 1, height))
+        answers.append(0)
+        continue
 
-    check = False
-    while stack:
-        before = stack.pop()
-        if before[1] > cur:
-            stack.append(before)
-            answer.append(before[0])
-            check = True
+    if stack[-1][1] > height:
+        answers.append(stack[-1][0])
+        stack.append((i + 1, height))
+    else:
+        while stack and stack[-1][1] <= height:
+            stack.pop()
+        if not stack:
+            answers.append(0)
+        else:
+            answers.append(stack[-1][0])
+        stack.append((i + 1, height))
 
-        if check:
-            break
-
-    if not check:
-        answer.append(0)
-
-    stack.append((i + 1, cur))
-print(*answer)
+print(*answers)
